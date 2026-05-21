@@ -88,7 +88,7 @@
 <div class="case-hero">
   <p class="case-label">Case Study · UX Research · Teardown</p>
   <h1 class="case-title">Canvas Course Navigation Teardown</h1>
-  <p class="case-subtitle">A structured product teardown of Canvas's course navigation — identifying the root cause of student friction and proposing a standardized redesign that balances consistency with instructor flexibility.</p>
+  <p class="case-subtitle">A structured product teardown of Canvas's course navigation, identifying the root cause of student friction and proposing a standardized redesign that balances consistency with instructor flexibility.</p>
   <div class="hero-btns">
     <a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-primary">Interactive Demo →</a>
     <a href="index.html#work" class="btn-ghost">Back to Work</a>
@@ -106,20 +106,20 @@
   <div class="case-section">
     <h2 class="case-section-title">Overview</h2>
     <p>After multiple years using Canvas across dozens of courses at UC Santa Cruz, I noticed a consistent pattern: every course was organized differently. One professor buried the syllabus inside a module. Another put assignments under "Pages." Every new quarter felt like navigating a new product.</p>
-    <p>I decided to treat this as a product problem — not just a complaint — and conduct a structured teardown to identify the root cause and propose a concrete solution.</p>
+    <p>I decided to conduct a structured teardown to identify the root cause and propose a concrete solution.</p>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">Identifying the Problem</h2>
-    <p>Canvas gives instructors near-total freedom over how they organize their course. In theory, flexibility is good. In practice, it creates a fragmented experience for students navigating 3–4 different courses per quarter, each with its own structure.</p>
-    <p>The pain points I experienced — and validated with classmates — fell into four categories:</p>
+    <p>Canvas gives instructors near-total freedom over how they organize their course. In theory, flexibility is good. In reality, it creates a fragmented experience for students navigating 3–4 different courses per quarter, each with its own structure.</p>
+    <p>The pain points I experienced and validated with classmates fell into four categories:</p>
     <div class="pain-grid">
       <div class="pain-card"><div class="pain-card-title">Inconsistent navigation</div><p>Every professor organized modules differently, forcing students to re-learn the layout each quarter.</p></div>
       <div class="pain-card"><div class="pain-card-title">Buried syllabus</div><p>Finding the syllabus sometimes required digging through multiple module pages with no consistent location.</p></div>
       <div class="pain-card"><div class="pain-card-title">Hidden assignments</div><p>Due dates were sometimes only visible inside a module, not surfaced on the main course page.</p></div>
       <div class="pain-card"><div class="pain-card-title">Missed announcements</div><p>The announcement feed mixed current and outdated posts with no clear hierarchy.</p></div>
     </div>
-    <div class="callout"><p>"Canvas had a consistency problem, not a features problem. The tools existed — instructors just had no incentive or guidance to use them uniformly."</p></div>
+    <div class="callout"><p>"Canvas had a consistency problem, not a features problem. While the tools existed, instructors just had no incentive or guidance to use them uniformly."</p></div>
     <p><strong>Hypothesis:</strong> If students could rely on a standardized course home structure across all their classes, time spent searching for course information would decrease and overall confidence in navigating Canvas would improve.</p>
   </div>
 
@@ -127,20 +127,20 @@
     <h2 class="case-section-title">Proposed Solution</h2>
     <p>A standardized "Course Home" template with four required sections displayed by default on every course:</p>
     <ul class="decision-list">
-      <li><strong>Announcements</strong> — current only, with older ones collapsed.</li>
-      <li><strong>Syllabus</strong> — always pinned and accessible from the home page.</li>
-      <li><strong>Assignments</strong> — upcoming due dates surfaced prominently.</li>
-      <li><strong>External Links</strong> — office hours, Zoom links, supplementary resources.</li>
+      <li><strong>Announcements:</strong>  current only, with older ones collapsed.</li>
+      <li><strong>Syllabus:</strong>  always pinned and accessible from the home page.</li>
+      <li><strong>Assignments:</strong>  upcoming due dates surfaced prominently.</li>
+      <li><strong>External Links:</strong>  office hours, Zoom links, supplementary resources.</li>
     </ul>
     <p>The template was designed to balance two competing needs: <strong>student consistency</strong> (same layout every quarter) and <strong>instructor flexibility</strong> (freedom to add additional sections beyond the required four).</p>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">Key Design Decisions & Tradeoffs</h2>
-    <p>The biggest threat to this solution was professor adaptability — any change that added work would fail. Two features required zero additional instructor effort:</p>
+    <p>The biggest threat to this solution was professor adaptability; changes that added work would increase the chances of failure. Two features required zero additional instructor effort:</p>
     <ul class="decision-list">
-      <li><strong>Auto-pinned first announcement</strong> — the first announcement of the term is automatically pinned, ensuring students see critical info without instructors remembering to do it manually.</li>
-      <li><strong>Optional course completeness indicator</strong> — a lightweight progress bar visible only to the instructor, showing how complete their Course Home setup is. Encourages adoption without mandating it.</li>
+      <li><strong>Auto-pinned first announcement:</strong>  the first announcement of the term is automatically pinned, ensuring students see critical info without instructors remembering to do it manually.</li>
+      <li><strong>Optional course completeness indicator:</strong>  a lightweight progress bar visible only to the instructor, showing how complete their Course Home setup is. Encourages adoption without mandating it.</li>
     </ul>
     <div class="callout"><p>"A fully locked template would have solved consistency but pushed away instructors with legitimate reasons for custom organization. The four required sections represent the minimum viable consistency."</p></div>
   </div>
@@ -153,12 +153,12 @@
       <div class="metric"><div class="metric-label-top">Instructor — Satisfaction</div><div class="metric-desc">Post-launch survey score vs. baseline</div></div>
       <div class="metric"><div class="metric-label-top">Instructor — Adoption</div><div class="metric-desc">Course completeness indicator adoption rate</div></div>
     </div>
-    <p>The goal was improvement on student metrics <strong>without decreasing instructor satisfaction</strong> — a constraint that shaped every design decision.</p>
+    <p>The goal was improvement on student metrics <strong>without decreasing instructor satisfaction</strong>, a constraint that shaped every design decision.</p>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">Reflection</h2>
-    <p>This project taught me that the hardest product problems aren't technical — they're organizational. Canvas already had all the features needed to solve this problem. The gap was in defaults, incentives, and guidance. <strong>A well-designed default is often more powerful than a new feature.</strong></p>
+    <p>This project taught me that the hardest product problems aren't technical but rather organizational. Canvas already had all the features needed to solve this problem. The gap was in defaults, incentives, and guidance. <strong>A well-designed default is often more powerful than a new feature.</strong></p>
     <p>If I were to take this further: run a pilot with a subset of instructors, measure key metrics before and after, and use results to support broader rollout. The completeness indicator was designed specifically to measure instructor engagement throughout that pilot.</p>
   </div>
 
@@ -167,7 +167,6 @@
 
 <footer>
   <span class="footer-name">Anthony Mui</span>
-  <span class="footer-note">Product Manager · UC Santa Cruz CS '26 · Bay Area</span>
 </footer>
 
 </body>
