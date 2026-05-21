@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocFlow — Anthony Mui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f;
+    --accent: #7effd4; --text: #f0efe8; --muted: #b0b0c0;
+    --border: rgba(255,255,255,0.07);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .nav-back { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+
+  .case-hero { padding: 10rem 4rem 5rem; max-width: 860px; margin: 0 auto; }
+  .case-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
+  .case-subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.7; max-width: 600px; margin-bottom: 2rem; }
+
+  .hero-btns { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #0a0a0f; padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+  .btn-ghost { color: var(--text); padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; border: 1px solid var(--border); transition: all 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .meta-row { display: flex; gap: 3rem; padding: 2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 5rem; flex-wrap: wrap; }
+  .meta-key { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+  .meta-val { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+
+  .case-body { max-width: 860px; margin: 0 auto; padding: 0 4rem 6rem; }
+  .case-section { margin-bottom: 4rem; }
+  .case-section-title { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1.5rem; }
+  .case-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.2rem; }
+  .case-body p strong { color: var(--text); font-weight: 600; }
+
+  .callout { background: var(--bg2); border-left: 3px solid var(--accent); padding: 1.5rem 2rem; border-radius: 0 4px 4px 0; margin: 2rem 0; }
+  .callout p { color: var(--text); font-size: 1.05rem; font-style: italic; margin: 0; }
+
+  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .pain-card { background: var(--bg2); border: 1px solid var(--border); padding: 1.25rem 1.5rem; border-radius: 4px; }
+  .pain-card-title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+  .pain-card p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6; }
+
+  .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+  .metric { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem; border-radius: 4px; }
+  .metric-label-top { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .metric-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  .decision-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0; }
+  .decision-list li { padding-left: 1.5rem; position: relative; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+  .decision-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+  .decision-list li strong { color: var(--text); }
+
+  .btn-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3rem; transition: gap 0.2s; }
+  .btn-back:hover { gap: 0.8rem; }
+
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: var(--serif); font-size: 1rem; color: var(--muted); }
+  .footer-note { font-size: 0.78rem; color: var(--muted); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .case-hero, .case-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .pain-grid, .metrics-grid { grid-template-columns: 1fr; }
+    .meta-row { gap: 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Anthony Mui</a>
+  <a href="index.html#work" class="nav-back">← Back to Work</a>
+</nav>
+
+<div class="case-hero">
+  <p class="case-label">Case Study · 0→1 Build · Full-Stack</p>
+  <h1 class="case-title">DocFlow</h1>
+  <p class="case-subtitle"><!-- Add your subtitle/description here --></p>
+  <div class="hero-btns">
+    <a href="https://docflow-production-e48b.up.railway.app/" class="btn-primary">Try Demo →</a>
+    <a href="index.html#work" class="btn-primary">← Back to Work</a>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">2025</div></div>
+    <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val"><!-- e.g. PM & Developer --></div></div>
+    <div class="meta-item"><div class="meta-key"><!-- Label --></div><div class="meta-val"><!-- Value --></div></div>
+    <div class="meta-item"><div class="meta-key"><!-- Label --></div><div class="meta-val"><!-- Value --></div></div>
+  </div>
+</div>
+
+<div class="case-body">
+
+  <div class="case-section">
+    <h2 class="case-section-title">Overview</h2>
+    <p><!-- Add overview content here --></p>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">The Problem</h2>
+    <p><!-- Describe the problem here --></p>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 1 --></div><p><!-- Description --></p></div>
+      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 2 --></div><p><!-- Description --></p></div>
+      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 3 --></div><p><!-- Description --></p></div>
+      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 4 --></div><p><!-- Description --></p></div>
+    </div>
+    <div class="callout"><p>"<!-- Add a key insight or quote here -->"</p></div>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Solution & Execution</h2>
+    <p><!-- Describe your solution here --></p>
+    <ul class="decision-list">
+      <li><strong><!-- Feature 1 --></strong> — <!-- Description --></li>
+      <li><strong><!-- Feature 2 --></strong> — <!-- Description --></li>
+      <li><strong><!-- Feature 3 --></strong> — <!-- Description --></li>
+      <li><strong><!-- Feature 4 --></strong> — <!-- Description --></li>
+    </ul>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Key Decisions & Tradeoffs</h2>
+    <p><!-- Describe the key decisions made --></p>
+    <ul class="decision-list">
+      <li><strong><!-- Decision 1 --></strong> — <!-- Description --></li>
+      <li><strong><!-- Decision 2 --></strong> — <!-- Description --></li>
+      <li><strong><!-- Decision 3 --></strong> — <!-- Description --></li>
+    </ul>
+    <div class="callout"><p>"<!-- Add a key tradeoff insight here -->"</p></div>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Success Metrics</h2>
+    <div class="metrics-grid">
+      <div class="metric"><div class="metric-label-top"><!-- Metric 1 label --></div><div class="metric-desc"><!-- Metric 1 description --></div></div>
+      <div class="metric"><div class="metric-label-top"><!-- Metric 2 label --></div><div class="metric-desc"><!-- Metric 2 description --></div></div>
+      <div class="metric"><div class="metric-label-top"><!-- Metric 3 label --></div><div class="metric-desc"><!-- Metric 3 description --></div></div>
+      <div class="metric"><div class="metric-label-top"><!-- Metric 4 label --></div><div class="metric-desc"><!-- Metric 4 description --></div></div>
+    </div>
+    <p><!-- Add any additional context about the metrics --></p>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Reflection</h2>
+    <p><!-- Add your reflection here --></p>
+    <p><!-- Add what you'd do differently or next steps --></p>
+  </div>
+
+  <a href="index.html#work" class="btn-back">← Back to all work</a>
+</div>
+
+<footer>
+  <span class="footer-name">Anthony Mui</span>
+  <span class="footer-note">Product Manager · UC Santa Cruz CS '26 · Bay Area</span>
+</footer>
+
+</body>
+</html>
