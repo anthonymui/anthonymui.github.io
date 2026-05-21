@@ -24,7 +24,7 @@
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: all 0.3s; }
-  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); text-decoration: none; white-space: nowrap; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
@@ -131,9 +131,7 @@
     <h2 class="section-title">CS graduate. Builder. Product thinker.</h2>
   </div>
   <div class="about-text reveal" style="max-width: 680px;">
-    <p>I'm a <span>Computer Science graduate from UC Santa Cruz</span> who got into CS to build things — and got into product because I realized the hardest part isn't writing the code. It's figuring out what to build and why.</p>
-    <p>I've <span>founded a marketplace</span>, run e-commerce stores, shipped a full-stack product from scratch, and torn down real products used by millions of students. I approach product with the same rigor I applied to systems programming.</p>
-    <p>I'm fluent in <span>English, Mandarin, and Cantonese</span>, and I'm actively looking for new grad PM roles in the Bay Area where I can work on products with real user impact.</p>
+    <p>CS grad from UC Santa Cruz. I turn ideas into real products, designing workflows, crafting user experiences, and working across teams to ship things people actually use.</p>
   </div>
 </section>
 
@@ -168,15 +166,15 @@
       <div class="project-num">02</div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="project-tag">PM-Led Build</span>
+          <span class="project-tag">0→1 Build</span>
           <span class="project-tag">Full-Stack</span>
           <span class="project-tag">Live Product</span>
         </div>
         <h3 class="project-title">DocFlow</h3>
         <p class="project-desc">A full-stack collaborative document editor scoped and shipped as a PM-led build. Every decision driven by deliberate tradeoffs — cutting real-time collaboration and email auth to ship a polished core fast.</p>
         <div class="project-btns">
-          <a href="#" class="btn-primary">Try Demo →</a>
-          <a href="docflow.html" class="btn-ghost">Read Case Study</a>
+          <a href="docflow.html" class="btn-primary">Case Study →</a>
+          <a href="https://docflow-production-e48b.up.railway.app/" class="btn-ghost">Try Demo →</a>
         </div>
       </div>
       <div class="project-year">2025</div>
@@ -195,7 +193,7 @@
         <p class="project-desc">A structured UX teardown of Canvas's course navigation used by millions of students — ending with a concrete standardized redesign proposal and an interactive before/after demo.</p>
         <div class="project-btns">
           <a href="canvas.html" class="btn-primary">Case Study →</a>
-          <a href="canvas-demo.html" class="btn-ghost">Interactive Demo</a>
+          <a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-ghost">Interactive Demo</a>
         </div>
       </div>
       <div class="project-year">2024</div>
@@ -208,12 +206,11 @@
 <section id="contact">
   <div class="reveal">
     <p class="section-label">Get In Touch</p>
-    <h2 class="contact-title">Open to new grad PM roles <em>right now.</em></h2>
-    <p class="contact-sub">If you're building something that needs a PM who can think in tradeoffs and ship real product, let's talk.</p>
+    <h2 class="contact-title">Let's <em>Connect.</em></h2>
+    <p class="contact-sub">Reach out via LinkedIn or email.</p>
     <div class="contact-links">
       <a href="https://linkedin.com/in/anthonymui" class="btn-primary" target="_blank">LinkedIn</a>
       <a href="mailto:your@email.com" class="btn-ghost">Email Me</a>
-      <a href="#" class="btn-ghost">Download Resume</a>
     </div>
   </div>
 </section>
