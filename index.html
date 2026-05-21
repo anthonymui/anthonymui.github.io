@@ -48,9 +48,9 @@
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
   /* SECTIONS */
-  section { padding: 3rem 4rem; }
+  section { padding: 7rem 4rem; }
   .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 2.5rem; max-width: 600px; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 3.5rem; max-width: 600px; }
 
   /* ABOUT */
   #about { background: var(--bg2); }
@@ -131,14 +131,14 @@
     <h2 class="section-title">CS graduate. Builder. Product thinker.</h2>
   </div>
   <div class="about-text reveal" style="max-width: 680px;">
-    <p>CS grad from UC Santa Cruz. I turn ideas into real products, designing workflows and crafting user experiences that help ship products people actually use.  </p>
+    <p>CS grad from UC Santa Cruz. I turn ideas into real products, designing workflows and crafting user experiences that help ship products people actually use.</p>
   </div>
 </section>
 
 <!-- WORK -->
 <section id="work">
   <div class="reveal">
-    <p class="section-label">View Work</p>
+    <p class="section-label">Selected Work</p>
     <h2 class="section-title">Products built, shipped, and analyzed.</h2>
   </div>
   <div class="projects">
@@ -171,10 +171,10 @@
           <span class="project-tag">Live Product</span>
         </div>
         <h3 class="project-title">DocFlow</h3>
-        <p class="project-desc">A full-stack collaborative document editor scoped and shipped as a PM-led build. Every decision driven by deliberate tradeoffs — cutting real-time collaboration and email auth to ship a polished core fast.</p>
+        <p class="project-desc">A full-stack collaborative document editor scoped and shipped. Every decision driven by deliberate tradeoffs — cutting real-time collaboration and email auth to ship a polished core fast.</p>
         <div class="project-btns">
           <a href="docflow.html" class="btn-primary">Case Study →</a>
-          <a href="https://docflow-production-e48b.up.railway.app/" class="btn-ghost">Try Demo →</a>
+          <a href="#" class="btn-ghost">Try Demo →</a><!-- TODO: add DocFlow demo link -->
         </div>
       </div>
       <div class="project-year">2025</div>
@@ -193,7 +193,7 @@
         <p class="project-desc">A structured UX teardown of Canvas's course navigation used by millions of students — ending with a concrete standardized redesign proposal and an interactive before/after demo.</p>
         <div class="project-btns">
           <a href="canvas.html" class="btn-primary">Case Study →</a>
-          <a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-ghost">Interactive Demo →</a>
+          <a href="canvas-demo.html" class="btn-ghost">Interactive Demo</a><!-- TODO: add Canvas demo link -->
         </div>
       </div>
       <div class="project-year">2024</div>
@@ -210,14 +210,13 @@
     <p class="contact-sub">Reach out via LinkedIn or email.</p>
     <div class="contact-links">
       <a href="https://linkedin.com/in/anthonymui" class="btn-primary" target="_blank">LinkedIn</a>
-      <a href="mailto:antm4072@email.com" class="btn-ghost">Email Me</a>
+      <a href="mailto:antm4072@gmail.com" class="btn-ghost">Email Me</a>
     </div>
   </div>
 </section>
 
 <footer>
   <span class="footer-name">Anthony Mui</span>
-  <span class="footer-note">Product Manager · UC Santa Cruz CS '26 · Bay Area</span>
 </footer>
 
 <script>
@@ -233,7 +232,9 @@
   reveals.forEach(el => observer.observe(el));
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
-    nav.style.padding = window.scrollY > 50 ? '0.9rem 4rem' : '1.25rem 4rem';
+    const isMobile = window.innerWidth <= 768;
+    const sidePad = isMobile ? '1.5rem' : '4rem';
+    nav.style.padding = window.scrollY > 50 ? `0.9rem ${sidePad}` : `1.25rem ${sidePad}`;
   });
 </script>
 </body>
