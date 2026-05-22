@@ -114,9 +114,9 @@
     <p>The challenge was shipping something usable and coherent within a constrained scope, without sacrificing depth in the areas that matter most.</p>
     <div class="pain-grid">
       <div class="pain-card"><div class="pain-card-title">Scope creep risk</div><p>Open-ended prompts invite over-building. Shipping shallow coverage across every feature is worse than depth in a few.</p></div>
-      <div class="pain-card"><div class="pain-card-title">Editing experience quality</div><p>Rich text editors are deceptively complex. Getting formatting, persistence, and rehydration right requires careful library selection.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Editing experience quality</div><p>Ensuring proper library slection to get correct formatting.</p></div>
       <div class="pain-card"><div class="pain-card-title">Sharing model clarity</div><p>Access control needs to be simple enough to implement quickly but coherent enough to reflect real product logic.</p></div>
-      <div class="pain-card"><div class="pain-card-title">Deployment reliability</div><p>A product that only runs locally is not a product. Deployment had to work end-to-end for anyone to evaluate it.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Deployment reliability</div><p>Deployment had to work for anyone to evaluate it.</p></div>
     </div>
     <div class="callout"><p>"The hardest decisions were not technical. They were about what to cut and what to ship."</p></div>
   </div>
@@ -138,8 +138,8 @@
     <ul class="decision-list">
       <li><strong>Editor library selection:</strong>  Chose an editor library that stores content in a structured format, making documents reliable to save, reopen, and rehydrate. The priority was a stable editing experience over flexibility I did not need at this scope.</li>
       <li><strong>Lightweight local database:</strong>  Chose SQLite to eliminate infrastructure dependencies and keep deployment simple. The goal was a product anyone could test immediately, not a scalable backend.</li>
-      <li><strong>Seeded accounts over email authentication:</strong>  Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model. The tradeoff was clearly documented rather than hidden.</li>
-      <li><strong>Cut real-time collaboration:</strong>  WebSockets and CRDTs would have been a significant time investment. Auto-save handles async workflows adequately at this scope. This was the first cut made and the easiest to justify.</li>
+      <li><strong>Seeded accounts over email authentication:</strong>  Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model. The tradeoff was clearly documented.</li>
+      <li><strong>Cut real-time collaboration:</strong>  WebSockets and CRDTs would have been a significant time investment. Auto-save handles async workflows adequately at this scope.</li>
     </ul>
     <div class="callout"><p>"Scope cuts are only good decisions if you can explain them clearly. Every cut I made had a reason."</p></div>
   </div>
@@ -150,7 +150,7 @@
       <div class="metric"><div class="metric-label-top">Features Shipped</div><div class="metric-desc">Full editing experience with formatting, auto-save, file import, export, sharing, search, sorting, and duplication, all working end-to-end.</div></div>
       <div class="metric"><div class="metric-label-top">Deployment</div><div class="metric-desc">Live on Railway. Accessible in any browser with no local setup required. Seeded accounts ready to test immediately.</div></div>
       <div class="metric"><div class="metric-label-top">Permission Model</div><div class="metric-desc">Three-tier access control with owner, editor, and viewer roles, color-coded in the UI with collaborator visibility in the editor header.</div></div>
-      <div class="metric"><div class="metric-label-top">AI Workflow</div><div class="metric-desc">Used Replit AI for code generation and Claude for product thinking. Every AI suggestion evaluated against complexity vs. impact before accepting, modifying, or rejecting.</div></div>
+      <div class="metric"><div class="metric-label-top">AI Workflow</div><div class="metric-desc">Used Replit AI for code generation and Claude for product thinking. Every suggestion was evaluated against complexity vs. impact before accepting, modifying, or rejecting.</div></div>
     </div>
     <p>DocFlow was evaluated on product judgment and execution quality. The goal was to ship a complete, testable product with deliberate tradeoffs and clear reasoning behind every decision.</p>
   </div>
