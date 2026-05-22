@@ -113,8 +113,7 @@
     <p>The challenge was shipping something usable and coherent within a constrained scope, without sacrificing depth in the areas that matter most.</p>
     <div class="pain-grid">
       <div class="pain-card"><div class="pain-card-title">Scope creep risk</div><p>Open-ended prompts can lead to over-building. Shipping shallow coverage across every feature is worse than depth in a few.</p></div>
-      <div class="pain-card"><div class="pain-card-title">Editing experience quality</div><p>Ensuring proper library slection to get correct formatting.</p></div>
-      <div class="pain-card"><div class="pain-card-title">Sharing model clarity</div><p>Access control needs to be simple enough to implement quickly but coherent enough to reflect real product logic.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Editor complexity</div><p>Choosing the right editor library was critical to ensure formatting worked correctly and documents reliably save and open.</p></div>      <div class="pain-card"><div class="pain-card-title">Sharing model clarity</div><p>Access control needs to be simple enough to implement quickly but coherent enough to reflect real product logic.</p></div>
       <div class="pain-card"><div class="pain-card-title">Deployment reliability</div><p>Deployment had to work for anyone to evaluate it.</p></div>
     </div>
     <div class="callout"><p>"The hardest decisions were not technical. They were about what to cut and what to ship."</p></div>
@@ -138,7 +137,7 @@
       <li><strong>Editor library selection:</strong>  Chose an editor library that stores content in a structured format, making documents reliable to save, reopen, and rehydrate. The priority was a stable editing experience over flexibility not needed at this scope.</li>
       <li><strong>Lightweight local database:</strong>  Chose SQLite to eliminate infrastructure dependencies and keep deployment simple. The goal was a product anyone could test immediately.</li>
       <li><strong>Seeded accounts over email authentication:</strong>  Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model.</li>
-      <li><strong>Cut real-time collaboration:</strong>  Auto-save handles async workflows adequately at this scope.</li>
+      <li><strong>Cut real-time collaboration:</strong>  Cut real-time collaboration as the complexity was not justified at this scope. Auto-save covers the core use case.</li>
     </ul>
     <div class="callout"><p>"Scope cuts are only good decisions if you can explain them clearly. Every cut I made had a reason."</p></div>
   </div>
