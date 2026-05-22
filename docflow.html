@@ -111,7 +111,7 @@
 
   <div class="case-section">
     <h2 class="case-section-title">The Problem</h2>
-    <p>Most lightweight document tools either lack collaboration entirely or require complex infrastructure to support it. The challenge was shipping something usable and coherent within a constrained scope, without sacrificing depth in the areas that matter most.</p>
+    <p>The challenge was shipping something usable and coherent within a constrained scope, without sacrificing depth in the areas that matter most.</p>
     <div class="pain-grid">
       <div class="pain-card"><div class="pain-card-title">Scope creep risk</div><p>Open-ended prompts invite over-building. Shipping shallow coverage across every feature is worse than depth in a few.</p></div>
       <div class="pain-card"><div class="pain-card-title">Editing experience quality</div><p>Rich text editors are deceptively complex. Getting formatting, persistence, and rehydration right requires careful library selection.</p></div>
@@ -125,10 +125,10 @@
     <h2 class="case-section-title">Solution & Execution</h2>
     <p>Rather than attempting every feature, I identified the highest-impact areas and built each one with care.</p>
     <ul class="decision-list">
-      <li><strong>Rich text editing via Tiptap</strong> — Selected Tiptap over alternatives because it stores content as structured JSON rather than raw HTML, making persistence and rehydration reliable. Supports bold, italic, underline, headings, font sizes, lists, blockquote, and inline code with keyboard shortcut tooltips on every toolbar action.</li>
-      <li><strong>Auto-save with live status indicator</strong> — Eliminated the need for a manual save action. A visible saved indicator and last-edited timestamp give users confidence without adding complexity.</li>
-      <li><strong>Sharing model with three permission levels</strong> — Owner, editor, and viewer roles are color-coded in the UI. Collaborator avatars appear in the editor header so users know who has access at a glance.</li>
-      <li><strong>File import and export</strong> — Users can import .txt and .md files directly into editable documents, and export any document as PDF or Markdown. Scope was intentionally limited to formats with clear conversion paths.</li>
+      <li><strong>Rich text editing via Tiptap:</strong>  Selected Tiptap over alternatives because it stores content as structured JSON rather than raw HTML, making it more reliable. Supports bold, italic, underline, headings, font sizes, lists, blockquote, and inline code with keyboard shortcut tooltips on every toolbar action.</li>
+      <li><strong>Auto-save with live status indicator:</strong>  Eliminated the need for a manual save action. A visible saved indicator and last-edited timestamp give users confidence without adding complexity.</li>
+      <li><strong>Sharing model with three sharing levels:</strong>  Owner, editor, and viewer roles are color-coded in the UI. Collaborator avatars appear in the editor header so users know who has access at a glance.</li>
+      <li><strong>File import and export:</strong>  Users can import .txt and .md files directly into editable documents, and export any document as PDF or Markdown. Scope was intentionally limited to formats with clear conversion paths.</li>
     </ul>
   </div>
 
@@ -136,10 +136,10 @@
     <h2 class="case-section-title">Key Decisions & Tradeoffs</h2>
     <p>Every feature was evaluated against a single question: is the user impact worth the implementation cost?</p>
     <ul class="decision-list">
-      <li><strong>Tiptap over ProseMirror directly</strong> — Tiptap wraps ProseMirror in a clean React API and serializes content as JSON, which is safer and more portable than raw HTML. The right tradeoff for this scope.</li>
-      <li><strong>SQLite over Postgres</strong> — Zero infrastructure overhead. Works on any host without provisioning a database service. Postgres would have added latency and setup complexity with no meaningful benefit at this scale.</li>
-      <li><strong>Seeded accounts over email auth</strong> — Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model. The tradeoff was clearly documented rather than hidden.</li>
-      <li><strong>Cut real-time collaboration</strong> — WebSockets and CRDTs would have been a significant time investment. Auto-save handles async workflows adequately at this scope. This was the first cut made and the easiest to justify.</li>
+      <li><strong>Editor library selection</strong> — Chose an editor library that stores content in a structured format, making documents reliable to save, reopen, and rehydrate. The priority was a stable editing experience over flexibility I did not need at this scope.</li>
+      <li><strong>Lightweight local database</strong> — Chose SQLite to eliminate infrastructure dependencies and keep deployment simple. The goal was a product anyone could test immediately, not a scalable backend.</li>
+      <li><strong>Seeded accounts over email authentication:</strong>  Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model. The tradeoff was clearly documented rather than hidden.</li>
+      <li><strong>Cut real-time collaboration:</strong>  WebSockets and CRDTs would have been a significant time investment. Auto-save handles async workflows adequately at this scope. This was the first cut made and the easiest to justify.</li>
     </ul>
     <div class="callout"><p>"Scope cuts are only good decisions if you can explain them clearly. Every cut I made had a reason."</p></div>
   </div>
