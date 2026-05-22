@@ -88,16 +88,16 @@
 <div class="case-hero">
   <p class="case-label">Case Study · 0→1 Build · Full-Stack</p>
   <h1 class="case-title">DocFlow</h1>
-  <p class="case-subtitle"><!-- Add your subtitle/description here --></p>
+  <p class="case-subtitle">A lightweight collaborative document editor built end-to-end. I owned every layer of the product, from scoping and prioritization to frontend, backend, and deployment, shipping a working product with deliberate cuts and clear reasoning.</p>
   <div class="hero-btns">
-    <a href="https://docflow-production-e48b.up.railway.app/" class="btn-primary">Try Demo →</a>
-    <a href="index.html#work" class="btn-primary">← Back to Work</a>
+    <a href="https://ajaiaassessment-production.up.railway.app/" class="btn-primary">Try Demo →</a>
+    <a href="index.html#work" class="btn-ghost">← Back to Work</a>
   </div>
   <div class="meta-row">
-    <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">2025</div></div>
-    <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val"><!-- e.g. PM & Developer --></div></div>
-    <div class="meta-item"><div class="meta-key"><!-- Label --></div><div class="meta-val"><!-- Value --></div></div>
-    <div class="meta-item"><div class="meta-key"><!-- Label --></div><div class="meta-val"><!-- Value --></div></div>
+    <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">May 2026</div></div>
+    <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val">PM & Developer</div></div>
+    <div class="meta-item"><div class="meta-key">Stack</div><div class="meta-val">React, Node.js, SQLite</div></div>
+    <div class="meta-item"><div class="meta-key">Type</div><div class="meta-val">0→1 Full-Stack Build</div></div>
   </div>
 </div>
 
@@ -105,58 +105,60 @@
 
   <div class="case-section">
     <h2 class="case-section-title">Overview</h2>
-    <p><!-- Add overview content here --></p>
+    <p>DocFlow is a collaborative document editor I designed and built from scratch. The goal was not to recreate Google Docs, but to ship the strongest working version of a document editor within a defined scope, demonstrating product judgment, full-stack execution, and deliberate prioritization.</p>
+    <p>I owned every decision: what to build, what to cut, how to structure the backend, and how to deploy a product that anyone could test immediately without any setup.</p>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">The Problem</h2>
-    <p><!-- Describe the problem here --></p>
+    <p>Most lightweight document tools either lack collaboration entirely or require complex infrastructure to support it. The challenge was shipping something usable and coherent within a constrained scope, without sacrificing depth in the areas that matter most.</p>
     <div class="pain-grid">
-      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 1 --></div><p><!-- Description --></p></div>
-      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 2 --></div><p><!-- Description --></p></div>
-      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 3 --></div><p><!-- Description --></p></div>
-      <div class="pain-card"><div class="pain-card-title"><!-- Pain point 4 --></div><p><!-- Description --></p></div>
+      <div class="pain-card"><div class="pain-card-title">Scope creep risk</div><p>Open-ended prompts invite over-building. Shipping shallow coverage across every feature is worse than depth in a few.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Editing experience quality</div><p>Rich text editors are deceptively complex. Getting formatting, persistence, and rehydration right requires careful library selection.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Sharing model clarity</div><p>Access control needs to be simple enough to implement quickly but coherent enough to reflect real product logic.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Deployment reliability</div><p>A product that only runs locally is not a product. Deployment had to work end-to-end for anyone to evaluate it.</p></div>
     </div>
-    <div class="callout"><p>"<!-- Add a key insight or quote here -->"</p></div>
+    <div class="callout"><p>"The hardest decisions were not technical. They were about what to cut and what to ship."</p></div>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">Solution & Execution</h2>
-    <p><!-- Describe your solution here --></p>
+    <p>Rather than attempting every feature, I identified the highest-impact areas and built each one with care.</p>
     <ul class="decision-list">
-      <li><strong><!-- Feature 1 --></strong> — <!-- Description --></li>
-      <li><strong><!-- Feature 2 --></strong> — <!-- Description --></li>
-      <li><strong><!-- Feature 3 --></strong> — <!-- Description --></li>
-      <li><strong><!-- Feature 4 --></strong> — <!-- Description --></li>
+      <li><strong>Rich text editing via Tiptap</strong> — Selected Tiptap over alternatives because it stores content as structured JSON rather than raw HTML, making persistence and rehydration reliable. Supports bold, italic, underline, headings, font sizes, lists, blockquote, and inline code with keyboard shortcut tooltips on every toolbar action.</li>
+      <li><strong>Auto-save with live status indicator</strong> — Eliminated the need for a manual save action. A visible saved indicator and last-edited timestamp give users confidence without adding complexity.</li>
+      <li><strong>Sharing model with three permission levels</strong> — Owner, editor, and viewer roles are color-coded in the UI. Collaborator avatars appear in the editor header so users know who has access at a glance.</li>
+      <li><strong>File import and export</strong> — Users can import .txt and .md files directly into editable documents, and export any document as PDF or Markdown. Scope was intentionally limited to formats with clear conversion paths.</li>
     </ul>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">Key Decisions & Tradeoffs</h2>
-    <p><!-- Describe the key decisions made --></p>
+    <p>Every feature was evaluated against a single question: is the user impact worth the implementation cost?</p>
     <ul class="decision-list">
-      <li><strong><!-- Decision 1 --></strong> — <!-- Description --></li>
-      <li><strong><!-- Decision 2 --></strong> — <!-- Description --></li>
-      <li><strong><!-- Decision 3 --></strong> — <!-- Description --></li>
+      <li><strong>Tiptap over ProseMirror directly</strong> — Tiptap wraps ProseMirror in a clean React API and serializes content as JSON, which is safer and more portable than raw HTML. The right tradeoff for this scope.</li>
+      <li><strong>SQLite over Postgres</strong> — Zero infrastructure overhead. Works on any host without provisioning a database service. Postgres would have added latency and setup complexity with no meaningful benefit at this scale.</li>
+      <li><strong>Seeded accounts over email auth</strong> — Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model. The tradeoff was clearly documented rather than hidden.</li>
+      <li><strong>Cut real-time collaboration</strong> — WebSockets and CRDTs would have been a significant time investment. Auto-save handles async workflows adequately at this scope. This was the first cut made and the easiest to justify.</li>
     </ul>
-    <div class="callout"><p>"<!-- Add a key tradeoff insight here -->"</p></div>
+    <div class="callout"><p>"Scope cuts are only good decisions if you can explain them clearly. Every cut I made had a reason."</p></div>
   </div>
 
   <div class="case-section">
-    <h2 class="case-section-title">Success Metrics</h2>
+    <h2 class="case-section-title">Results</h2>
     <div class="metrics-grid">
-      <div class="metric"><div class="metric-label-top"><!-- Metric 1 label --></div><div class="metric-desc"><!-- Metric 1 description --></div></div>
-      <div class="metric"><div class="metric-label-top"><!-- Metric 2 label --></div><div class="metric-desc"><!-- Metric 2 description --></div></div>
-      <div class="metric"><div class="metric-label-top"><!-- Metric 3 label --></div><div class="metric-desc"><!-- Metric 3 description --></div></div>
-      <div class="metric"><div class="metric-label-top"><!-- Metric 4 label --></div><div class="metric-desc"><!-- Metric 4 description --></div></div>
+      <div class="metric"><div class="metric-label-top">Features Shipped</div><div class="metric-desc">Full editing experience with formatting, auto-save, file import, export, sharing, search, sorting, and duplication, all working end-to-end.</div></div>
+      <div class="metric"><div class="metric-label-top">Deployment</div><div class="metric-desc">Live on Railway. Accessible in any browser with no local setup required. Seeded accounts ready to test immediately.</div></div>
+      <div class="metric"><div class="metric-label-top">Permission Model</div><div class="metric-desc">Three-tier access control with owner, editor, and viewer roles, color-coded in the UI with collaborator visibility in the editor header.</div></div>
+      <div class="metric"><div class="metric-label-top">AI Workflow</div><div class="metric-desc">Used Replit AI for code generation and Claude for product thinking. Every AI suggestion evaluated against complexity vs. impact before accepting, modifying, or rejecting.</div></div>
     </div>
-    <p><!-- Add any additional context about the metrics --></p>
+    <p>There are no vanity metrics here. DocFlow was evaluated on product judgment and execution quality. The clearest signal of success was shipping a complete, testable product with deliberate tradeoffs and clear reasoning behind every decision.</p>
   </div>
 
   <div class="case-section">
     <h2 class="case-section-title">Reflection</h2>
-    <p><!-- Add your reflection here --></p>
-    <p><!-- Add what you'd do differently or next steps --></p>
+    <p>DocFlow reinforced something I already believed: prioritization is a communication problem. The hardest part was not building, it was deciding what not to build, and being able to explain why clearly enough that someone else would agree with the call.</p>
+    <p>If I were to continue building DocFlow, the next priorities would be real-time collaboration indicators using WebSockets, document version history with timestamp snapshots, and a commenting layer. Each has a clear user need and a defined implementation path. They were cut on time, not on merit.</p>
   </div>
 
   <a href="index.html#work" class="btn-back">← Back to all work</a>
