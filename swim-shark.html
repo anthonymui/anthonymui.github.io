@@ -1,372 +1,165 @@
-```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swim Shark Academy — Anthony Mui</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #101820;
-    --bg2: #17232d;
-    --bg3: #1d2b36;
-
-    --accent: #d9895b;
-    --accent-light: #e7a77e;
-
-    --text: #eee9df;
-    --muted: #a8aaa5;
-
-    --border: rgba(238, 233, 223, 0.12);
-
-    --serif: "Libre Baskerville", Georgia, serif;
-    --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f;
+    --accent: #7effd4; --text: #f0efe8; --muted: #b0b0c0;
+    --border: rgba(255,255,255,0.07);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
   }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .nav-back { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+  .nav-back:hover { color: var(--accent); }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  .case-hero { padding: 10rem 4rem 2rem; max-width: 860px; margin: 0 auto; }
+  .case-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
+  .case-subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.7; max-width: 600px; margin-bottom: 1.5rem; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+  .meta-row { display: flex; gap: 3rem; padding: 2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; }
+  .meta-item { }
+  .meta-key { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+  .meta-val { font-size: 0.95rem; color: var(--text); font-weight: 500; }
 
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 4rem;
-    background: rgba(16, 24, 32, 0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
+  .case-body { max-width: 860px; margin: 0 auto; padding: 0 4rem 6rem; }
+  .case-section { margin-bottom: 4rem; }
+  .case-section-title { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1.5rem; }
+  .case-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.2rem; }
+  .case-body p strong { color: var(--text); font-weight: 600; }
 
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.55rem;
-    color: var(--text);
-    text-decoration: none;
-    white-space: nowrap;
-  }
+  .callout { background: var(--bg2); border-left: 3px solid var(--accent); padding: 1.5rem 2rem; border-radius: 0 4px 4px 0; margin: 2rem 0; }
+  .callout p { color: var(--text); font-size: 1.05rem; font-style: italic; margin: 0; }
 
-  .nav-back {
-    color: var(--muted);
-    text-decoration: none;
-    font-family: var(--sans);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
-  }
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+  .metric { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem; border-radius: 4px; }
+  .metric-num { font-family: var(--serif); font-size: 2.2rem; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
+  .metric-label { font-size: 0.8rem; color: var(--muted); }
 
-  .nav-back:hover {
-    color: var(--accent-light);
-  }
+  .decision-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0; }
+  .decision-list li { padding-left: 1.5rem; position: relative; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+  .decision-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+  .decision-list li strong { color: var(--text); }
 
-  .case-hero {
-    padding: 10rem 4rem 2rem;
-    max-width: 860px;
-    margin: 0 auto;
-  }
+  .btn-primary { background: var(--accent); color: #0a0a0f; padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+  .hero-btns { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .btn-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3rem; transition: gap 0.2s; }
+  .btn-back:hover { gap: 0.8rem; }
 
-  .case-label {
-    font-family: var(--display);
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 1rem;
-  }
-
-  .case-title {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    margin-bottom: 1.5rem;
-  }
-
-  .case-subtitle {
-    color: var(--muted);
-    font-size: 1.15rem;
-    line-height: 1.8;
-    max-width: 600px;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    padding: 0.8rem 1.7rem;
-    border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    display: inline-block;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #17130f;
-    font-weight: 600;
-    border: 1px solid var(--accent);
-  }
-
-  .btn-primary:hover {
-    background: var(--accent-light);
-    border-color: var(--accent-light);
-    transform: translateY(-2px);
-  }
-
-  .btn-ghost {
-    color: var(--text);
-    font-weight: 500;
-    border: 1px solid var(--border);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent-light);
-  }
-
-  .meta-row {
-    display: flex;
-    gap: 3rem;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .meta-key {
-    font-family: var(--display);
-    font-size: 0.63rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.35rem;
-  }
-
-  .meta-val {
-    font-size: 0.95rem;
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .case-body {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 4rem 6rem;
-  }
-
-  .case-section {
-    margin-bottom: 4rem;
-  }
-
-  .case-section-title {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    line-height: 1.2;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-
-  .case-body p {
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.85;
-    margin-bottom: 1.2rem;
-  }
-
-  .case-body p strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  .callout {
-    background: var(--bg2);
-    border-left: 3px solid var(--accent);
-    padding: 1.5rem 2rem;
-    border-radius: 0 4px 4px 0;
-    margin: 2rem 0;
-  }
-
-  .callout p {
-    color: var(--text);
-    font-size: 1.05rem;
-    font-style: italic;
-    margin: 0;
-  }
-
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-
-  .metric {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    border-radius: 4px;
-  }
-
-  .metric-num {
-    font-family: var(--display);
-    font-size: 2.2rem;
-    color: var(--accent-light);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  .metric-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  .decision-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-  }
-
-  .decision-list li {
-    padding-left: 1.5rem;
-    position: relative;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.75;
-  }
-
-  .decision-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  .decision-list li strong {
-    color: var(--text);
-  }
-
-  .btn-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--accent-light);
-    text-decoration: none;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    margin-top: 3rem;
-    transition: gap 0.2s;
-  }
-
-  .btn-back:hover {
-    gap: 0.8rem;
-    color: var(--accent);
-  }
-
-  footer {
-    background: #0c141b;
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-name {
-    font-family: var(--serif);
-    font-size: 1rem;
-    color: var(--muted);
-  }
-
-  .footer-note {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: var(--serif); font-size: 1rem; color: var(--muted); }
+  .footer-note { font-size: 0.78rem; color: var(--muted); }
 
   @media (max-width: 768px) {
-    nav {
-      padding: 1rem 1.5rem;
-    }
-
-    .nav-logo {
-      font-size: 1.4rem;
-    }
-
-    .case-hero,
-    .case-body {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    .metrics-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .meta-row {
-      gap: 1.5rem;
-    }
-
-    footer {
-      padding: 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .metrics-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .case-title {
-      font-size: 3.1rem;
-    }
+    nav { padding: 1rem 1.5rem; }
+    .case-hero, .case-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .meta-row { flex-wrap: wrap; gap: 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
   }
 </style>
-```
+</head>
+<body>
 
-Also change the single hero button from:
+<nav>
+  <a href="index.html" class="nav-logo">Anthony Mui</a>
+  <a href="index.html#work" class="nav-back">← Back to Work</a>
+</nav>
 
-```html
-<a href="index.html#work" class="btn-primary">← Back to Work</a>
-```
+<div class="case-hero">
+  <p class="case-label">Case Study · Founder · Marketplace</p>
+  <h1 class="case-title">Swim Shark Academy</h1>
+  <p class="case-subtitle">How I identified a market gap in private swim instruction, built a two-sided marketplace from scratch, and generated $8K+ in a single summer.</p>
+<div class="hero-btns">
+  <a href="index.html#work" class="btn-primary">← Back to Work</a>
+</div>  
+<div class="meta-row">
+    <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">2024</div></div>
+    <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val">Co-Founder & Operator</div></div>
+    <div class="meta-item"><div class="meta-key">Revenue</div><div class="meta-val">$8,000+</div></div>
+    <div class="meta-item"><div class="meta-key">Instructors Hired</div><div class="meta-val">3</div></div>
+  </div>
+</div>
 
-to:
+<div class="case-body">
 
-```html
-<a href="index.html#work" class="btn-ghost">← Back to Work</a>
-```
+  <div class="case-section">
+    <h2 class="case-section-title">Overview</h2>
+    <p>While working as a private swim instructor, I noticed families waiting weeks or even months to be matched with an instructor. Since swim lessons occur mainly in the summer, these delays led to frustration and children missing a limited window to learn a critical life skill.</p>
+    <p>I founded Swim Shark Academy to reduce customer wait times and create a faster, more reliable experience. The hypothesis was simple: <strong>if families could be matched with a qualified instructor within seven days, satisfaction and conversion would increase.</strong></p>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">The Problem</h2>
+    <p>The traditional instructor-matching process lacked speed and transparency. Demand existed but wasn't being fulfilled. Four pain points stood out:</p>
+    <ul class="decision-list">
+      <li><strong>Long wait times:</strong> families waited weeks before being matched with anyone.</li>
+      <li><strong>No transparency:</strong> customers had no visibility into the matching process or timeline.</li>
+      <li><strong>Summer urgency:</strong> the seasonal window for lessons meant delays had outsized consequences.</li>
+      <li><strong>No structured intake:</strong> there was no system to capture location, skill level, or availability upfront.</li>
+    </ul>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Solution & Execution</h2>
+    <p>Rather than spending months building infrastructure, I launched fast with simple tools and iterated from real signal.</p>
+    <ul class="decision-list">
+      <li><strong>Structured intake form:</strong>  designed a signup flow capturing location, availability, skill level, and goals to improve match quality. Iterated 5+ times based on direct user feedback, reducing form completion time by ~25%.</li>
+      <li><strong>Backend matching system:</strong>  built a centralized system to manage client and instructor data and streamline scheduling logistics.</li>
+      <li><strong>AI-assisted contracting:</strong>  used AI to draft and iterate instructor hiring contracts, compressing multi-day drafting cycles into hours and accelerating onboarding.</li>
+      <li><strong>Targeted outreach:</strong>  led marketing campaigns to acquire early customers and grow the instructor roster to three.</li>
+    </ul>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Key Decisions & Tradeoffs</h2>
+
+    <div class="callout"><p>"Prioritizing speed over perfection: with summer approaching, I chose to launch quickly rather than spend time building a polished website."</p></div>
+
+    <ul class="decision-list">
+      <li><strong>Google Forms over a custom site:</strong>  allowed me to validate demand before investing in infrastructure. The right call given the timeline.</li>
+      <li><strong>A/B tested the first lesson structure:</strong>  experimented with free vs. paid initial lessons to balance quality assurance with conversion.</li>
+      <li><strong>Simplified pricing to reduce friction:</strong>  launched with three clear packages (6, 12, 18 lessons) and added a 24-lesson discount option after observing demand from highly committed families.</li>
+      <li><strong>Simple referral incentive:</strong>  a 10% referral discount enabled fast implementation while driving organic word-of-mouth without complex infrastructure.</li>
+    </ul>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Results</h2>
+    <div class="metrics-grid">
+      <div class="metric"><div class="metric-num">$8K+</div><div class="metric-label">Revenue in one summer</div></div>
+      <div class="metric"><div class="metric-num">10+</div><div class="metric-label">Paying customers acquired</div></div>
+      <div class="metric"><div class="metric-num">2×</div><div class="metric-label">Month-over-month acquisition growth</div></div>
+      <div class="metric"><div class="metric-num">&lt;7d</div><div class="metric-label">Instructor match time (down from weeks)</div></div>
+      <div class="metric"><div class="metric-num">~25%</div><div class="metric-label">Reduction in form completion time</div></div>
+      <div class="metric"><div class="metric-num">33%</div><div class="metric-label">Customers who upsold to 24-lesson package</div></div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Reflection</h2>
+    <p>Swim Shark taught me that understanding user pain points and optimizing for speed in the early stages of a product matters more than polish. The hardest decisions weren't technical, they were about what to cut and what to validate first.</p>
+    <p>If I were to build this again, I would implement automated scheduling for clients and instructors to reduce operational overhead, and leverage AI tooling across the entire workflow to accelerate iteration and decision-making.</p>
+  </div>
+
+  <a href="index.html#work" class="btn-back">← Back to all work</a>
+</div>
+
+<footer>
+  <span class="footer-name">Anthony Mui</span>
+</footer>
+
+</body>
+</html>
