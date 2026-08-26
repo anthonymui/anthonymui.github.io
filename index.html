@@ -7,9 +7,11 @@
 <title>Anthony Mui — Product Manager</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
   :root {
     --bg: #101820;
     --bg2: #17232d;
@@ -25,7 +27,9 @@
 
     --serif: "Libre Baskerville", Georgia, serif;
     --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
+
 
   *,
   *::before,
@@ -35,32 +39,40 @@
     padding: 0;
   }
 
+
   html {
     scroll-behavior: smooth;
   }
 
+
   body {
     background: var(--bg);
     color: var(--text);
+
     font-family: var(--sans);
+
     font-size: 16px;
     line-height: 1.6;
+
     overflow-x: hidden;
   }
 
 
   /* =========================
-     NAV
+     NAVIGATION
   ========================= */
 
   nav {
     position: fixed;
+
     top: 0;
     left: 0;
     right: 0;
+
     z-index: 100;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -75,32 +87,45 @@
     transition: all 0.3s ease;
   }
 
+
   .nav-logo {
     font-family: var(--serif);
+
     font-size: 1.55rem;
+
     color: var(--text);
+
     text-decoration: none;
+
     white-space: nowrap;
   }
 
+
   .nav-links {
     display: flex;
+
     gap: 2.5rem;
+
     list-style: none;
   }
 
+
   .nav-links a {
     color: var(--muted);
+
     text-decoration: none;
 
     font-size: 0.75rem;
+
     font-weight: 500;
 
     letter-spacing: 0.1em;
+
     text-transform: uppercase;
 
     transition: color 0.2s ease;
   }
+
 
   .nav-links a:hover {
     color: var(--accent-light);
@@ -115,17 +140,22 @@
     min-height: 100vh;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
     padding: 8rem 8rem 5rem;
 
     position: relative;
+
     overflow: hidden;
   }
 
+
   .hero-bg {
     position: absolute;
+
     inset: 0;
 
     background:
@@ -134,6 +164,7 @@
         rgba(217, 137, 91, 0.11) 0%,
         transparent 70%
       ),
+
       radial-gradient(
         ellipse 40% 50% at 10% 90%,
         rgba(54, 91, 112, 0.18) 0%,
@@ -143,12 +174,14 @@
     pointer-events: none;
   }
 
+
   .hero-label {
     position: relative;
 
     font-size: 0.72rem;
 
     letter-spacing: 0.18em;
+
     text-transform: uppercase;
 
     color: var(--accent-light);
@@ -160,18 +193,23 @@
     animation: fadeUp 0.8s 0.2s forwards;
   }
 
+
+  /* =========================
+     HERO DISPLAY FONT
+  ========================= */
+
   .hero-title {
     position: relative;
 
-    font-family: var(--serif);
+    font-family: var(--display);
 
     font-size: clamp(4rem, 8vw, 7.5rem);
 
-    line-height: 0.96;
+    line-height: 0.9;
 
-    letter-spacing: -0.04em;
+    letter-spacing: -0.055em;
 
-    font-weight: 400;
+    font-weight: 500;
 
     margin-bottom: 2rem;
 
@@ -180,11 +218,17 @@
     animation: fadeUp 0.8s 0.4s forwards;
   }
 
+
   .hero-title em {
-    font-style: italic;
+    font-family: var(--display);
+
+    font-style: normal;
+
+    font-weight: 600;
 
     color: var(--accent);
   }
+
 
   .hero-sub {
     position: relative;
@@ -204,66 +248,19 @@
     animation: fadeUp 0.8s 0.6s forwards;
   }
 
+
   .hero-actions {
     position: relative;
 
     display: flex;
+
     gap: 0.8rem;
+
     align-items: center;
 
     opacity: 0;
 
     animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  .hero-scroll {
-    position: absolute;
-
-    bottom: 2.5rem;
-    left: 8rem;
-
-    display: flex;
-    align-items: center;
-
-    gap: 0.75rem;
-
-    color: var(--muted);
-
-    font-size: 0.7rem;
-
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
-    opacity: 0;
-
-    animation: fadeUp 0.8s 1.2s forwards;
-  }
-
-  .scroll-line {
-    width: 40px;
-    height: 1px;
-
-    background: var(--muted);
-
-    position: relative;
-
-    overflow: hidden;
-  }
-
-  .scroll-line::after {
-    content: "";
-
-    position: absolute;
-
-    left: -100%;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: var(--accent);
-
-    animation: scrollLine 2s 1.5s infinite;
   }
 
 
@@ -297,6 +294,7 @@
     display: inline-block;
   }
 
+
   .btn-primary:hover {
     background: var(--accent-light);
 
@@ -304,6 +302,7 @@
 
     transform: translateY(-2px);
   }
+
 
   .btn-ghost {
     color: var(--text);
@@ -327,6 +326,7 @@
     display: inline-block;
   }
 
+
   .btn-ghost:hover {
     border-color: var(--accent);
 
@@ -342,6 +342,7 @@
     padding: 7rem 8rem;
   }
 
+
   .section-label {
     font-size: 0.68rem;
 
@@ -353,6 +354,7 @@
 
     margin-bottom: 1rem;
   }
+
 
   .section-title {
     font-family: var(--serif);
@@ -379,8 +381,10 @@
     background: var(--bg2);
 
     border-top: 1px solid var(--border);
+
     border-bottom: 1px solid var(--border);
   }
+
 
   .about-text p {
     color: var(--muted);
@@ -393,6 +397,7 @@
 
     max-width: 680px;
   }
+
 
   .about-text p span {
     color: var(--text);
@@ -407,12 +412,15 @@
     background: var(--bg);
   }
 
+
   .projects {
     display: flex;
+
     flex-direction: column;
 
     margin-top: 2.5rem;
   }
+
 
   .project {
     padding: 3.5rem 0;
@@ -432,20 +440,24 @@
       padding 0.2s ease;
   }
 
+
   .project:first-child {
     border-top: 1px solid var(--border);
   }
+
 
   .project:hover {
     background: rgba(255, 255, 255, 0.025);
 
     padding-left: 1rem;
+
     padding-right: 1rem;
 
     margin: 0 -1rem;
 
     border-radius: 4px;
   }
+
 
   .project-num {
     font-family: var(--serif);
@@ -459,6 +471,7 @@
     padding-top: 0.25rem;
   }
 
+
   .project-tags {
     display: flex;
 
@@ -468,6 +481,7 @@
 
     flex-wrap: wrap;
   }
+
 
   .project-tag {
     font-size: 0.63rem;
@@ -487,6 +501,7 @@
     border-radius: 3px;
   }
 
+
   .project-title {
     font-family: var(--serif);
 
@@ -501,6 +516,7 @@
     letter-spacing: -0.02em;
   }
 
+
   .project-desc {
     color: var(--muted);
 
@@ -513,6 +529,7 @@
     margin-bottom: 1.5rem;
   }
 
+
   .project-btns {
     display: flex;
 
@@ -520,6 +537,7 @@
 
     flex-wrap: wrap;
   }
+
 
   .project-year {
     font-size: 0.75rem;
@@ -554,30 +572,38 @@
     align-items: center;
 
     padding-top: 9rem;
+
     padding-bottom: 9rem;
   }
 
+
   .contact-title {
-    font-family: var(--serif);
+    font-family: var(--display);
 
     font-size: clamp(3rem, 6vw, 5.5rem);
 
-    font-weight: 400;
+    font-weight: 500;
 
-    line-height: 1.05;
+    line-height: 0.95;
 
     margin-bottom: 1.5rem;
 
     max-width: 700px;
 
-    letter-spacing: -0.035em;
+    letter-spacing: -0.055em;
   }
 
+
   .contact-title em {
-    font-style: italic;
+    font-family: var(--display);
+
+    font-style: normal;
+
+    font-weight: 600;
 
     color: var(--accent);
   }
+
 
   .contact-sub {
     color: var(--muted);
@@ -590,6 +616,7 @@
 
     line-height: 1.7;
   }
+
 
   .contact-links {
     display: flex;
@@ -620,6 +647,7 @@
     align-items: center;
   }
 
+
   .footer-name {
     font-family: var(--serif);
 
@@ -627,6 +655,7 @@
 
     color: var(--muted);
   }
+
 
   .footer-note {
     font-size: 0.72rem;
@@ -642,30 +671,21 @@
   ========================= */
 
   @keyframes fadeUp {
+
     from {
       opacity: 0;
+
       transform: translateY(24px);
     }
 
     to {
       opacity: 1;
+
       transform: translateY(0);
     }
+
   }
 
-  @keyframes scrollLine {
-    0% {
-      left: -100%;
-    }
-
-    50% {
-      left: 0%;
-    }
-
-    100% {
-      left: 100%;
-    }
-  }
 
   .reveal {
     opacity: 0;
@@ -676,6 +696,7 @@
       opacity 0.7s ease,
       transform 0.7s ease;
   }
+
 
   .reveal.visible {
     opacity: 1;
@@ -694,37 +715,42 @@
       padding: 1rem 1.5rem;
     }
 
+
     .nav-logo {
       font-size: 1.4rem;
     }
+
 
     .nav-links {
       gap: 1.2rem;
     }
 
+
     .nav-links a {
       font-size: 0.65rem;
     }
+
 
     #home,
     section,
     footer {
       padding-left: 1.5rem;
+
       padding-right: 1.5rem;
     }
 
+
     #home {
       padding-top: 7rem;
+
       padding-bottom: 4rem;
     }
+
 
     .hero-title {
       font-size: 3.7rem;
     }
 
-    .hero-scroll {
-      left: 1.5rem;
-    }
 
     .project {
       grid-template-columns: 1fr;
@@ -732,32 +758,41 @@
       gap: 0;
     }
 
+
     .project-num,
     .project-year {
       display: none;
     }
 
+
     .project-title {
       font-size: 1.9rem;
     }
+
 
     .project-desc {
       font-size: 0.95rem;
     }
 
+
     #contact {
       padding-top: 7rem;
+
       padding-bottom: 7rem;
     }
+
 
     .contact-title {
       font-size: 3.2rem;
     }
 
+
     footer {
       padding-top: 1.5rem;
+
       padding-bottom: 1.5rem;
     }
+
   }
 
 
@@ -767,17 +802,21 @@
       gap: 0.8rem;
     }
 
+
     .nav-links a {
       font-size: 0.6rem;
     }
+
 
     .hero-title {
       font-size: 3.2rem;
     }
 
+
     .hero-sub {
       font-size: 0.95rem;
     }
+
 
     .hero-actions {
       align-items: flex-start;
@@ -785,17 +824,26 @@
       flex-direction: column;
     }
 
+
     .section-title {
       font-size: 2.45rem;
     }
 
+
     .project-title {
       font-size: 1.75rem;
     }
+
+
+    .contact-title {
+      font-size: 2.9rem;
+    }
+
   }
 
 </style>
 </head>
+
 
 <body>
 
@@ -806,9 +854,13 @@
 
 <nav>
 
-  <a href="#home" class="nav-logo">
+  <a
+    href="#home"
+    class="nav-logo"
+  >
     Anthony Mui
   </a>
+
 
   <ul class="nav-links">
 
@@ -843,19 +895,27 @@
 
   <div class="hero-bg"></div>
 
+
   <p class="hero-label">
     Product Manager
   </p>
 
+
   <h1 class="hero-title">
+
     Scope.<br>
+
     Build.<br>
+
     <em>Ship.</em>
+
   </h1>
+
 
   <p class="hero-sub">
     I find the problem worth solving, then make sure it gets built.
   </p>
+
 
   <div class="hero-actions">
 
@@ -866,20 +926,13 @@
       See My Work
     </a>
 
+
     <a
       href="#contact"
       class="btn-ghost"
     >
       Let's Connect
     </a>
-
-  </div>
-
-  <div class="hero-scroll">
-
-    <div class="scroll-line"></div>
-
-    Scroll
 
   </div>
 
@@ -898,11 +951,13 @@
       Background
     </p>
 
+
     <h2 class="section-title">
       Built to Ship.
     </h2>
 
   </div>
+
 
   <div
     class="about-text reveal"
@@ -932,6 +987,7 @@
       View Work
     </p>
 
+
     <h2 class="section-title">
       Products built, shipped, and analyzed.
     </h2>
@@ -949,6 +1005,7 @@
       <div class="project-num">
         01
       </div>
+
 
       <div class="project-body">
 
@@ -968,15 +1025,18 @@
 
         </div>
 
+
         <h3 class="project-title">
           Swim Shark Academy
         </h3>
+
 
         <p class="project-desc">
           Founded a two-sided marketplace connecting swim instructors
           with students. Identified a real market gap, built the
           operations from scratch, and generated $8K+ in revenue.
         </p>
+
 
         <div class="project-btns">
 
@@ -990,6 +1050,7 @@
         </div>
 
       </div>
+
 
       <div class="project-year">
         2024
@@ -1005,6 +1066,7 @@
       <div class="project-num">
         02
       </div>
+
 
       <div class="project-body">
 
@@ -1024,15 +1086,18 @@
 
         </div>
 
+
         <h3 class="project-title">
           DocFlow
         </h3>
+
 
         <p class="project-desc">
           A full-stack collaborative document editor scoped and
           shipped. Every decision driven by deliberate tradeoffs,
           focusing on delivering a polished core.
         </p>
+
 
         <div class="project-btns">
 
@@ -1042,6 +1107,7 @@
           >
             Case Study →
           </a>
+
 
           <a
             href="https://docflow-production-e48b.up.railway.app/"
@@ -1055,6 +1121,7 @@
         </div>
 
       </div>
+
 
       <div class="project-year">
         2026
@@ -1070,6 +1137,7 @@
       <div class="project-num">
         03
       </div>
+
 
       <div class="project-body">
 
@@ -1089,9 +1157,11 @@
 
         </div>
 
+
         <h3 class="project-title">
           Canvas Course Navigation Teardown
         </h3>
+
 
         <p class="project-desc">
           A structured UX teardown of Canvas's course navigation
@@ -1099,6 +1169,7 @@
           standardized redesign proposal and an interactive
           before/after demo.
         </p>
+
 
         <div class="project-btns">
 
@@ -1108,6 +1179,7 @@
           >
             Case Study →
           </a>
+
 
           <a
             href="https://canvas-course-home-redesign--anthonymui4.replit.app/"
@@ -1121,6 +1193,7 @@
         </div>
 
       </div>
+
 
       <div class="project-year">
         2026
@@ -1146,13 +1219,16 @@
       Get In Touch
     </p>
 
+
     <h2 class="contact-title">
       Let's <em>Connect.</em>
     </h2>
 
+
     <p class="contact-sub">
       Reach out via LinkedIn or email.
     </p>
+
 
     <div class="contact-links">
 
@@ -1164,6 +1240,7 @@
       >
         LinkedIn
       </a>
+
 
       <a
         href="mailto:antm4072@gmail.com"
@@ -1198,56 +1275,76 @@
 
 <script>
 
-  const reveals = document.querySelectorAll(".reveal");
+  const reveals =
+    document.querySelectorAll(".reveal");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
 
-      entries.forEach((entry, i) => {
+  const observer =
+    new IntersectionObserver(
+      (entries) => {
 
-        if (entry.isIntersecting) {
+        entries.forEach(
+          (entry, i) => {
 
-          setTimeout(
-            () => entry.target.classList.add("visible"),
-            i * 80
-          );
+            if (entry.isIntersecting) {
 
-          observer.unobserve(entry.target);
-        }
+              setTimeout(
+                () =>
+                  entry.target.classList.add("visible"),
+                i * 80
+              );
 
-      });
+              observer.unobserve(entry.target);
 
-    },
-    {
-      threshold: 0.1
-    }
-  );
+            }
+
+          }
+        );
+
+      },
+
+      {
+        threshold: 0.1
+      }
+    );
 
 
   reveals.forEach(
-    (el) => observer.observe(el)
+    (el) =>
+      observer.observe(el)
   );
 
 
-  const nav = document.querySelector("nav");
+  const nav =
+    document.querySelector("nav");
 
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener(
+    "scroll",
+    () => {
 
-    const isMobile =
-      window.innerWidth <= 768;
+      const isMobile =
+        window.innerWidth <= 768;
 
-    const sidePad =
-      isMobile ? "1.5rem" : "4rem";
 
-    nav.style.padding =
-      window.scrollY > 50
-        ? `0.9rem ${sidePad}`
-        : `1.25rem ${sidePad}`;
+      const sidePad =
+        isMobile
+          ? "1.5rem"
+          : "4rem";
 
-  });
+
+      nav.style.padding =
+        window.scrollY > 50
+
+          ? `0.9rem ${sidePad}`
+
+          : `1.25rem ${sidePad}`;
+
+    }
+  );
 
 </script>
+
 
 </body>
 </html>
