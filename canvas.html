@@ -1,399 +1,173 @@
-```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Teardown — Anthony Mui</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #101820;
-    --bg2: #17232d;
-    --bg3: #1d2b36;
-
-    --accent: #d9895b;
-    --accent-light: #e7a77e;
-
-    --text: #eee9df;
-    --muted: #a8aaa5;
-
-    --border: rgba(238, 233, 223, 0.12);
-
-    --serif: "Libre Baskerville", Georgia, serif;
-    --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f;
+    --accent: #7effd4; --text: #f0efe8; --muted: #b0b0c0;
+    --border: rgba(255,255,255,0.07);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
   }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); text-decoration: none; }
+  .nav-back { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  .case-hero { padding: 10rem 4rem 2rem; max-width: 860px; margin: 0 auto; }
+  .case-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
+  .case-subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.7; max-width: 600px; margin-bottom: 1.5rem; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+  .hero-btns { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #0a0a0f; padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+  .btn-ghost { color: var(--text); padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; border: 1px solid var(--border); transition: all 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 4rem;
-    background: rgba(16, 24, 32, 0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
+  .meta-row { display: flex; gap: 3rem; padding: 2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .meta-key { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+  .meta-val { font-size: 0.95rem; color: var(--text); font-weight: 500; }
 
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.55rem;
-    color: var(--text);
-    text-decoration: none;
-  }
+  .case-body { max-width: 860px; margin: 0 auto; padding: 0 4rem 6rem; }
+  .case-section { margin-bottom: 4rem; }
+  .case-section-title { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1.5rem; }
+  .case-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.2rem; }
+  .case-body p strong { color: var(--text); font-weight: 600; }
 
-  .nav-back {
-    color: var(--muted);
-    text-decoration: none;
-    font-family: var(--sans);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  .callout { background: var(--bg2); border-left: 3px solid var(--accent); padding: 1.5rem 2rem; border-radius: 0 4px 4px 0; margin: 2rem 0; }
+  .callout p { color: var(--text); font-size: 1.05rem; font-style: italic; margin: 0; }
 
-  .nav-back:hover {
-    color: var(--accent-light);
-  }
+  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .pain-card { background: var(--bg2); border: 1px solid var(--border); padding: 1.25rem 1.5rem; border-radius: 4px; }
+  .pain-card-title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+  .pain-card p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6; }
 
-  .case-hero {
-    padding: 10rem 4rem 2rem;
-    max-width: 860px;
-    margin: 0 auto;
-  }
+  .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+  .metric { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem; border-radius: 4px; }
+  .metric-label-top { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .metric-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
-  .case-label {
-    font-family: var(--display);
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 1rem;
-  }
+  .decision-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0; }
+  .decision-list li { padding-left: 1.5rem; position: relative; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+  .decision-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+  .decision-list li strong { color: var(--text); }
 
-  .case-title {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    margin-bottom: 1.5rem;
-  }
+  .btn-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3rem; transition: gap 0.2s; }
+  .btn-back:hover { gap: 0.8rem; }
 
-  .case-subtitle {
-    color: var(--muted);
-    font-size: 1.15rem;
-    line-height: 1.8;
-    max-width: 600px;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary,
-  .btn-ghost {
-    padding: 0.8rem 1.7rem;
-    border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    display: inline-block;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #17130f;
-    font-weight: 600;
-    border: 1px solid var(--accent);
-  }
-
-  .btn-primary:hover {
-    background: var(--accent-light);
-    border-color: var(--accent-light);
-    transform: translateY(-2px);
-  }
-
-  .btn-ghost {
-    color: var(--text);
-    font-weight: 500;
-    border: 1px solid var(--border);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent-light);
-  }
-
-  .meta-row {
-    display: flex;
-    gap: 3rem;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .meta-key {
-    font-family: var(--display);
-    font-size: 0.63rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.35rem;
-  }
-
-  .meta-val {
-    font-size: 0.95rem;
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .case-body {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 4rem 6rem;
-  }
-
-  .case-section {
-    margin-bottom: 4rem;
-  }
-
-  .case-section-title {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    line-height: 1.2;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-
-  .case-body p {
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.85;
-    margin-bottom: 1.2rem;
-  }
-
-  .case-body p strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  .callout {
-    background: var(--bg2);
-    border-left: 3px solid var(--accent);
-    padding: 1.5rem 2rem;
-    border-radius: 0 4px 4px 0;
-    margin: 2rem 0;
-  }
-
-  .callout p {
-    color: var(--text);
-    font-size: 1.05rem;
-    font-style: italic;
-    margin: 0;
-  }
-
-  .pain-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 1.5rem 0;
-  }
-
-  .pain-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 1.25rem 1.5rem;
-    border-radius: 4px;
-  }
-
-  .pain-card-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .pain-card p {
-    font-size: 0.88rem;
-    color: var(--muted);
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-
-  .metric {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    border-radius: 4px;
-  }
-
-  .metric-label-top {
-    font-family: var(--display);
-    font-size: 0.63rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 0.5rem;
-  }
-
-  .metric-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .decision-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-  }
-
-  .decision-list li {
-    padding-left: 1.5rem;
-    position: relative;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.75;
-  }
-
-  .decision-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  .decision-list li strong {
-    color: var(--text);
-  }
-
-  .btn-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--accent-light);
-    text-decoration: none;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    margin-top: 3rem;
-    transition: gap 0.2s;
-  }
-
-  .btn-back:hover {
-    gap: 0.8rem;
-    color: var(--accent);
-  }
-
-  footer {
-    background: #0c141b;
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-name {
-    font-family: var(--serif);
-    font-size: 1rem;
-    color: var(--muted);
-  }
-
-  .footer-note {
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-name { font-family: var(--serif); font-size: 1rem; color: var(--muted); }
+  .footer-note { font-size: 0.78rem; color: var(--muted); }
 
   @media (max-width: 768px) {
-    nav {
-      padding: 1rem 1.5rem;
-    }
-
-    .nav-logo {
-      font-size: 1.4rem;
-    }
-
-    .case-hero,
-    .case-body {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-
-    .pain-grid,
-    .metrics-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .meta-row {
-      gap: 1.5rem;
-    }
-
-    footer {
-      padding: 1.5rem;
-    }
+    nav { padding: 1rem 1.5rem; }
+    .case-hero, .case-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .pain-grid, .metrics-grid { grid-template-columns: 1fr; }
+    .meta-row { gap: 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
   }
 </style>
-```
+</head>
+<body>
 
-And change the Canvas hero buttons from:
+<nav>
+  <a href="index.html" class="nav-logo">Anthony Mui</a>
+  <a href="index.html#work" class="nav-back">← Back to Work</a>
+</nav>
 
-```html
-<a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-primary">Interactive Demo →</a>
-<a href="index.html#work" class="btn-primary">← Back to Work</a>
-```
+<div class="case-hero">
+  <p class="case-label">Case Study · UX Research · Teardown</p>
+  <h1 class="case-title">Canvas Course Navigation Teardown</h1>
+  <p class="case-subtitle">A structured product teardown of Canvas's course navigation, identifying the root cause of student friction and proposing a standardized redesign that balances consistency with instructor flexibility.</p>
+  <div class="hero-btns">
+    <a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-primary">Interactive Demo →</a>
+    <a href="index.html#work" class="btn-primary">← Back to Work</a>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">2026</div></div>
+    <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val">PM Researcher</div></div>
+    <div class="meta-item"><div class="meta-key">Platform</div><div class="meta-val">Canvas LMS</div></div>
+    <div class="meta-item"><div class="meta-key">Users</div><div class="meta-val">Millions of students</div></div>
+  </div>
+</div>
 
-to:
+<div class="case-body">
 
-```html
-<a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-primary">
-  Interactive Demo →
-</a>
+  <div class="case-section">
+    <h2 class="case-section-title">Overview</h2>
+    <p>After multiple years using Canvas across dozens of courses at UC Santa Cruz, I noticed a consistent pattern: every course was organized differently. One professor buried the syllabus inside a module. Another put assignments under "Pages." Every new quarter felt like navigating a new product.</p>
+    <p>I decided to conduct a structured teardown to identify the root cause and propose a concrete solution.</p>
+  </div>
 
-<a href="index.html#work" class="btn-ghost">
-  ← Back to Work
-</a>
-```
+  <div class="case-section">
+    <h2 class="case-section-title">Identifying the Problem</h2>
+    <p>Canvas gives instructors near-total freedom over how they organize their course. In theory, flexibility is good. In reality, it creates a fragmented experience for students navigating 3–4 different courses per quarter, each with its own structure.</p>
+    <p>The pain points I experienced and validated with classmates fell into four categories:</p>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="pain-card-title">Inconsistent navigation</div><p>Every professor organized modules differently, forcing students to re-learn the layout each quarter.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Buried syllabus</div><p>Finding the syllabus sometimes required digging through multiple module pages with no consistent location.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Hidden assignments</div><p>Due dates were sometimes only visible inside a module, not surfaced on the main course page.</p></div>
+      <div class="pain-card"><div class="pain-card-title">Missed announcements</div><p>The announcement feed mixed current and outdated posts with no clear hierarchy.</p></div>
+    </div>
+    <div class="callout"><p>"Canvas had a consistency problem, not a features problem. While the tools existed, instructors just had no incentive or guidance to use them uniformly."</p></div>
+    <p><strong>Hypothesis:</strong> If students could rely on a standardized course home structure across all their classes, time spent searching for course information would decrease and overall confidence in navigating Canvas would improve.</p>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Proposed Solution</h2>
+    <p>A standardized "Course Home" template with four required sections displayed by default on every course:</p>
+    <ul class="decision-list">
+      <li><strong>Announcements:</strong>  current only, with older ones collapsed.</li>
+      <li><strong>Syllabus:</strong>  always pinned and accessible from the home page.</li>
+      <li><strong>Assignments:</strong>  upcoming due dates surfaced prominently.</li>
+      <li><strong>External Links:</strong>  office hours, Zoom links, supplementary resources.</li>
+    </ul>
+    <p>The template was designed to balance two competing needs: <strong>student consistency</strong> (same layout every quarter) and <strong>instructor flexibility</strong> (freedom to add additional sections beyond the required four).</p>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Key Design Decisions & Tradeoffs</h2>
+    <p>The biggest threat to this solution was professor adaptability; changes that added work would increase the chances of failure. Two features required zero additional instructor effort:</p>
+    <ul class="decision-list">
+      <li><strong>Auto-pinned first announcement:</strong>  the first announcement of the term is automatically pinned, ensuring students see critical info without instructors remembering to do it manually.</li>
+      <li><strong>Optional course completeness indicator:</strong>  a lightweight progress bar visible only to the instructor, showing how complete their Course Home setup is. Encourages adoption without mandating it.</li>
+    </ul>
+    <div class="callout"><p>"A fully locked template would have solved consistency but pushed away instructors with legitimate reasons for custom organization. The four required sections represent the minimum viable consistency."</p></div>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Success Metrics</h2>
+    <div class="metrics-grid">
+      <div class="metric"><div class="metric-label-top">Student — Primary</div><div class="metric-desc">Syllabus click-through rate on first course visit</div></div>
+      <div class="metric"><div class="metric-label-top">Student — Secondary</div><div class="metric-desc">Time-to-find for key resources (assignments, office hours)</div></div>
+      <div class="metric"><div class="metric-label-top">Instructor — Satisfaction</div><div class="metric-desc">Post-launch survey score vs. baseline</div></div>
+      <div class="metric"><div class="metric-label-top">Instructor — Adoption</div><div class="metric-desc">Course completeness indicator adoption rate</div></div>
+    </div>
+    <p>The goal was improvement on student metrics <strong>without decreasing instructor satisfaction</strong>, a constraint that shaped every design decision.</p>
+  </div>
+
+  <div class="case-section">
+    <h2 class="case-section-title">Reflection</h2>
+    <p>This project taught me that the hardest product problems aren't technical but rather organizational. Canvas already had all the features needed to solve this problem. The gap was in defaults, incentives, and guidance. <strong>A well-designed default is often more powerful than a new feature.</strong></p>
+    <p>If I were to take this further: run a pilot with a subset of instructors, measure key metrics before and after, and use results to support broader rollout. The completeness indicator was designed specifically to measure instructor engagement throughout that pilot.</p>
+  </div>
+
+  <a href="index.html#work" class="btn-back">← Back to all work</a>
+</div>
+
+<footer>
+  <span class="footer-name">Anthony Mui</span>
+</footer>
+
+</body>
+</html>
