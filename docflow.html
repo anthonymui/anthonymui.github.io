@@ -1,170 +1,380 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DocFlow — Anthony Mui</title>
+```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f;
-    --accent: #7effd4; --text: #f0efe8; --muted: #b0b0c0;
-    --border: rgba(255,255,255,0.07);
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
+    --bg: #101820;
+    --bg2: #17232d;
+    --bg3: #1d2b36;
+
+    --accent: #d9895b;
+    --accent-light: #e7a77e;
+
+    --text: #eee9df;
+    --muted: #a8aaa5;
+
+    --border: rgba(238, 233, 223, 0.12);
+
+    --serif: "Libre Baskerville", Georgia, serif;
+    --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text); text-decoration: none; }
-  .nav-back { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-back:hover { color: var(--accent); }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  .case-hero { padding: 10rem 4rem 2rem; max-width: 860px; margin: 0 auto; }
-  .case-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .case-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
-  .case-subtitle { color: var(--muted); font-size: 1.15rem; line-height: 1.7; max-width: 600px; margin-bottom: 2rem; }
+  html {
+    scroll-behavior: smooth;
+  }
 
-  .hero-btns { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--accent); color: #0a0a0f; padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; display: inline-block; }
-  .btn-primary:hover { background: #fff; transform: translateY(-1px); }
-  .btn-ghost { color: var(--text); padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; border: 1px solid var(--border); transition: all 0.2s; display: inline-block; }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-  .meta-row { display: flex; gap: 3rem; padding: 2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; flex-wrap: wrap; }
-  .meta-key { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
-  .meta-val { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(16, 24, 32, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
 
-  .case-body { max-width: 860px; margin: 0 auto; padding: 0 4rem 6rem; }
-  .case-section { margin-bottom: 4rem; }
-  .case-section-title { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 1.5rem; }
-  .case-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.2rem; }
-  .case-body p strong { color: var(--text); font-weight: 600; }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    color: var(--text);
+    text-decoration: none;
+  }
 
-  .callout { background: var(--bg2); border-left: 3px solid var(--accent); padding: 1.5rem 2rem; border-radius: 0 4px 4px 0; margin: 2rem 0; }
-  .callout p { color: var(--text); font-size: 1.05rem; font-style: italic; margin: 0; }
+  .nav-back {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
 
-  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-  .pain-card { background: var(--bg2); border: 1px solid var(--border); padding: 1.25rem 1.5rem; border-radius: 4px; }
-  .pain-card-title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
-  .pain-card p { font-size: 0.88rem; color: var(--muted); margin: 0; line-height: 1.6; }
+  .nav-back:hover {
+    color: var(--accent-light);
+  }
 
-  .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
-  .metric { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem; border-radius: 4px; }
-  .metric-label-top { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-  .metric-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .case-hero {
+    padding: 10rem 4rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
 
-  .decision-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; margin: 1.5rem 0; }
-  .decision-list li { padding-left: 1.5rem; position: relative; color: var(--muted); font-size: 1rem; line-height: 1.75; }
-  .decision-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
-  .decision-list li strong { color: var(--text); }
+  .case-label {
+    font-family: var(--display);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+  }
 
-  .btn-back { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3rem; transition: gap 0.2s; }
-  .btn-back:hover { gap: 0.8rem; }
+  .case-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+  }
 
-  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
-  .footer-name { font-family: var(--serif); font-size: 1rem; color: var(--muted); }
-  .footer-note { font-size: 0.78rem; color: var(--muted); }
+  .case-subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    padding: 0.8rem 1.7rem;
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #17130f;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    color: var(--text);
+    font-weight: 500;
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-key {
+    font-family: var(--display);
+    font-size: 0.63rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .meta-val {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .case-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 4rem 6rem;
+  }
+
+  .case-section {
+    margin-bottom: 4rem;
+  }
+
+  .case-section-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-body p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .case-body p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .callout {
+    background: var(--bg2);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 2rem;
+    border-radius: 0 4px 4px 0;
+    margin: 2rem 0;
+  }
+
+  .callout p {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .pain-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+  }
+
+  .pain-card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .pain-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .metric {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+
+  .metric-label-top {
+    font-family: var(--display);
+    font-size: 0.63rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .decision-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .decision-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .decision-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .decision-list li strong {
+    color: var(--text);
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-light);
+    text-decoration: none;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-top: 3rem;
+    transition: gap 0.2s;
+  }
+
+  .btn-back:hover {
+    gap: 0.8rem;
+    color: var(--accent);
+  }
+
+  footer {
+    background: #0c141b;
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  .footer-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
 
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .case-hero, .case-body { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .pain-grid, .metrics-grid { grid-template-columns: 1fr; }
-    .meta-row { gap: 1.5rem; }
-    footer { padding: 2rem 1.5rem; }
+    nav {
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-logo {
+      font-size: 1.4rem;
+    }
+
+    .case-hero,
+    .case-body {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .pain-grid,
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .meta-row {
+      gap: 1.5rem;
+    }
+
+    footer {
+      padding: 1.5rem;
+    }
   }
 </style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo">Anthony Mui</a>
-  <a href="index.html#work" class="nav-back">← Back to Work</a>
-</nav>
-
-<div class="case-hero">
-  <p class="case-label">Case Study · 0→1 Build · Full-Stack</p>
-  <h1 class="case-title">DocFlow</h1>
-  <p class="case-subtitle">A lightweight collaborative document editor built end-to-end to ship a working product with deliberate cuts and clear reasoning.</p>
-  <div class="hero-btns">
-    <a href="https://ajaiaassessment-production.up.railway.app/" class="btn-primary">Try Demo →</a>
-    <a href="index.html#work" class="btn-ghost">← Back to Work</a>
-  </div>
-  <div class="meta-row">
-    <div class="meta-item"><div class="meta-key">Timeline</div><div class="meta-val">2026</div></div>
-    <div class="meta-item"><div class="meta-key">Role</div><div class="meta-val">PM & Developer</div></div>
-    <div class="meta-item"><div class="meta-key">Stack</div><div class="meta-val">React, Node.js, SQLite</div></div>
-    <div class="meta-item"><div class="meta-key">Type</div><div class="meta-val">0→1 Full-Stack Build</div></div>
-  </div>
-</div>
-
-<div class="case-body">
-
-  <div class="case-section">
-    <h2 class="case-section-title">Overview</h2>
-    <p>DocFlow is a collaborative document editor I designed and built from scratch. The goal was to ship the strongest working version of a document editor within a defined scope, including what to build, what to cut, how to structure the backend, and how to deploy the product.</p>
-  </div>
-
-  <div class="case-section">
-    <h2 class="case-section-title">The Problem</h2>
-    <p>The challenge was shipping something usable and coherent within a constrained scope, without sacrificing depth in the areas that matter most.</p>
-    <div class="pain-grid">
-      <div class="pain-card"><div class="pain-card-title">Scope creep risk</div><p>Open-ended prompts can lead to over-building. Shipping shallow coverage across every feature is worse than depth in a few.</p></div>
-      <div class="pain-card"><div class="pain-card-title">Editor complexity</div><p>Choosing the right editor library was critical to ensure formatting worked correctly and documents reliably save and open.</p></div>      <div class="pain-card"><div class="pain-card-title">Sharing model clarity</div><p>Access control needs to be simple enough to implement quickly but coherent enough to reflect real product logic.</p></div>
-      <div class="pain-card"><div class="pain-card-title">Deployment reliability</div><p>Deployment had to work for anyone to evaluate it.</p></div>
-    </div>
-    <div class="callout"><p>"The hardest decisions were not technical. They were about what to cut and what to ship."</p></div>
-  </div>
-
-  <div class="case-section">
-    <h2 class="case-section-title">Solution & Execution</h2>
-    <p>Rather than attempting every feature, I identified the highest-impact areas and built each one with care.</p>
-    <ul class="decision-list">
-      <li><strong>Rich text editing:</strong>  Supports bold, italic, underline, headings, font sizes, lists, blockquote, and inline code with keyboard shortcut tooltips on every toolbar action.</li>
-      <li><strong>Auto-save with live status indicator:</strong>  Eliminated the need for a manual save action. A visible saved indicator and last-edited timestamp give users confidence without adding complexity.</li>
-      <li><strong>Sharing model with three permission levels:</strong>  Owner, editor, and viewer roles are color-coded in the UI. Collaborator avatars appear in the editor header so users know who has access at a glance.</li>
-      <li><strong>File import and export:</strong>  Users can import .txt and .md files directly into editable documents, and export any document as PDF or Markdown.</li>
-    </ul>
-  </div>
-
-  <div class="case-section">
-    <h2 class="case-section-title">Key Decisions & Tradeoffs</h2>
-    <p>Every feature was evaluated against a single question: is the user impact worth the implementation cost?</p>
-    <ul class="decision-list">
-      <li><strong>Editor library selection:</strong>  Chose an editor library that stores content in a structured format, making documents reliable to save, reopen, and rehydrate. The priority was a stable editing experience over flexibility not needed at this scope.</li>
-      <li><strong>Lightweight local database:</strong>  Chose SQLite to eliminate infrastructure dependencies and keep deployment simple. The goal was a product anyone could test immediately.</li>
-      <li><strong>Seeded accounts over email authentication:</strong>  Mocked login kept scope reasonable while still demonstrating the full ownership and sharing model.</li>
-      <li><strong>Cut real-time collaboration:</strong>  Cut real-time collaboration as the complexity was not justified at this scope. Auto-save covers the core use case.</li>
-    </ul>
-    <div class="callout"><p>"Scope cuts are only good decisions if you can explain them clearly. Every cut I made had a reason."</p></div>
-  </div>
-
-  <div class="case-section">
-    <h2 class="case-section-title">Results</h2>
-    <div class="metrics-grid">
-      <div class="metric"><div class="metric-label-top">Features Shipped</div><div class="metric-desc">Full editing experience with formatting, auto-save, file import, export, sharing, search, sorting, and duplication, all working end-to-end.</div></div>
-      <div class="metric"><div class="metric-label-top">Deployment</div><div class="metric-desc">Live on Railway. Accessible in any browser with no local setup required. Seeded accounts ready to test immediately.</div></div>
-      <div class="metric"><div class="metric-label-top">Permission Model</div><div class="metric-desc">Three-tier access control with owner, editor, and viewer roles, color-coded in the UI with collaborator visibility in the editor header.</div></div>
-      <div class="metric"><div class="metric-label-top">AI Workflow</div><div class="metric-desc">Used Replit AI for code generation and Claude for product thinking. Every suggestion was evaluated against complexity vs. impact before accepting, modifying, or rejecting.</div></div>
-    </div>
-    <p>DocFlow was evaluated on product judgment and execution quality. The goal was to ship a complete, testable product with deliberate tradeoffs and clear reasoning behind every decision.</p>
-  </div>
-
-  <div class="case-section">
-    <h2 class="case-section-title">Reflection</h2>
-    <p>DocFlow reinforced something I already believed: prioritization is a communication problem. The hardest part was not building, it was deciding what not to build, and being able to explain why clearly enough that someone else would agree with the call.</p>
-    <p>If I were to continue building DocFlow, the next priorities would be real-time collaboration indicators, document version history with timestamp snapshots, and a commenting layer. Each has a clear user need and a defined implementation path.</p>
-  </div>
-
-  <a href="index.html#work" class="btn-back">← Back to all work</a>
-</div>
-
-<footer>
-  <span class="footer-name">Anthony Mui</span>
-</footer>
-
-</body>
-</html>
+```
