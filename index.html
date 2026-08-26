@@ -3,239 +3,1223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Anthony Mui — Product Manager</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #16161f;
-    --accent: #7effd4;
-    --text: #f0efe8;
-    --muted: #b0b0c0;
-    --border: rgba(255,255,255,0.07);
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
+    --bg: #f5f3ee;
+    --bg2: #ebe9e3;
+    --bg3: #dfddd6;
+
+    --accent: #315c72;
+
+    --text: #242522;
+    --muted: #6d6d67;
+
+    --border: rgba(36, 37, 34, 0.14);
+
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(10,10,15,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: all 0.3s; }
-  .nav-logo { font-family: var(--serif); font-size: 2.0rem; color: var(--text); text-decoration: none; white-space: nowrap; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  /* HERO */
-  #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(126,255,212,0.06) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(61,214,163,0.04) 0%, transparent 60%); pointer-events: none; }
-  .hero-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  .hero-title { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
-  .hero-title em { font-style: italic; color: var(--accent); }
-  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted); max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; }
-  .hero-actions { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-  .hero-scroll { position: absolute; bottom: 2.5rem; left: 4rem; display: flex; align-items: center; gap: 0.75rem; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s 1.2s forwards; }
-  .scroll-line { width: 40px; height: 1px; background: var(--muted); position: relative; overflow: hidden; }
-  .scroll-line::after { content: ''; position: absolute; left: -100%; top: 0; width: 100%; height: 100%; background: var(--accent); animation: scrollLine 2s 1.5s infinite; }
+  html {
+    scroll-behavior: smooth;
+  }
 
-  /* BUTTONS */
-  .btn-primary { background: var(--accent); color: #0a0a0f; padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; border: none; cursor: pointer; display: inline-block; }
-  .btn-primary:hover { background: #fff; transform: translateY(-1px); }
-  .btn-ghost { color: var(--text); padding: 0.8rem 1.8rem; border-radius: 2px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; border: 1px solid var(--border); transition: all 0.2s; display: inline-block; }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-  /* SECTIONS */
-   section { padding: 2rem 8rem; }
-  .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 1.5rem; max-width: 600px; }
+  /* =========================
+     NAVIGATION
+  ========================= */
 
-  /* ABOUT */
-  #about { background: var(--bg2); }
-  .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.8; }
-  .about-text p span { color: var(--text); }
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 
-  /* WORK */
-  #work { background: var(--bg); }
-  .projects { display: flex; flex-direction: column; }
-  .project { padding: 3rem 0; display: grid; grid-template-columns: 80px 1fr auto; gap: 2.5rem; align-items: start; border-bottom: 1px solid var(--border); transition: background 0.2s; }
-  .project:hover { background: var(--bg2); padding-left: 1rem; padding-right: 1rem; margin: 0 -1rem; border-radius: 4px; }
-  .project-num { font-family: var(--serif); font-size: 0.9rem; color: var(--muted); font-style: italic; padding-top: 0.25rem; }
-  .project-tags { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-  .project-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(126,255,212,0.25); padding: 0.2rem 0.6rem; border-radius: 2px; }
-  .project-title { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 0.6rem; line-height: 1.15; }
-  .project-desc { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 560px; margin-bottom: 1.5rem; }
-  .project-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .project-year { font-size: 0.8rem; color: var(--muted); text-align: right; white-space: nowrap; padding-top: 0.25rem; letter-spacing: 0.05em; }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  /* CONTACT */
-  #contact { background: var(--bg2); text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .contact-title { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; margin-bottom: 1.5rem; max-width: 700px; }
-  .contact-title em { font-style: italic; color: var(--accent); }
-  .contact-sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 3rem; max-width: 420px; line-height: 1.7; }
-  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    padding: 1.25rem 4rem;
 
-  /* FOOTER */
-  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
-  .footer-name { font-family: var(--serif); font-size: 1rem; color: var(--muted); }
-  .footer-note { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+    background: rgba(245, 243, 238, 0.92);
+    backdrop-filter: blur(10px);
 
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes scrollLine { 0% { left: -100%; } 50% { left: 0%; } 100% { left: 100%; } }
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+    border-bottom: 1px solid var(--border);
 
-  /* MOBILE */
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+
+    font-size: 0.78rem;
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+
+  /* =========================
+     HERO
+  ========================= */
+
+  #home {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 8rem 8rem 5rem;
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        ellipse 60% 50% at 75% 40%,
+        rgba(49, 92, 114, 0.07) 0%,
+        transparent 70%
+      );
+
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 0.72rem;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    color: var(--accent);
+
+    margin-bottom: 1.5rem;
+
+    opacity: 0;
+
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+
+    font-size: clamp(4rem, 8vw, 7.5rem);
+
+    line-height: 0.95;
+
+    letter-spacing: -0.035em;
+
+    margin-bottom: 2rem;
+
+    font-weight: 400;
+
+    opacity: 0;
+
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--text);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+
+    color: var(--muted);
+
+    max-width: 480px;
+
+    line-height: 1.8;
+
+    margin-bottom: 2.5rem;
+
+    opacity: 0;
+
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    opacity: 0;
+
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+
+    bottom: 2.5rem;
+    left: 8rem;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    color: var(--muted);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+
+    background: var(--muted);
+
+    position: relative;
+
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: "";
+
+    position: absolute;
+
+    left: -100%;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: var(--accent);
+
+    animation: scrollLine 2s 1.5s infinite;
+  }
+
+
+  /* =========================
+     BUTTONS
+  ========================= */
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+
+    padding: 0.8rem 1.6rem;
+
+    border-radius: 3px;
+
+    font-size: 0.8rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.03em;
+
+    text-decoration: none;
+
+    text-transform: none;
+
+    transition: all 0.2s ease;
+
+    border: 1px solid var(--text);
+
+    cursor: pointer;
+
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: #fff;
+
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    color: var(--text);
+
+    padding: 0.8rem 1.6rem;
+
+    border-radius: 3px;
+
+    font-size: 0.8rem;
+
+    font-weight: 500;
+
+    letter-spacing: 0.03em;
+
+    text-decoration: none;
+
+    text-transform: none;
+
+    border: 1px solid var(--border);
+
+    transition: all 0.2s ease;
+
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+
+    color: var(--accent);
+  }
+
+
+  /* =========================
+     SECTIONS
+  ========================= */
+
+  section {
+    padding: 7rem 8rem;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    color: var(--accent);
+
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+
+    line-height: 1.1;
+
+    font-weight: 400;
+
+    margin-bottom: 2rem;
+
+    max-width: 650px;
+
+    letter-spacing: -0.02em;
+  }
+
+
+  /* =========================
+     ABOUT
+  ========================= */
+
+  #about {
+    background: var(--bg2);
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-text p {
+    color: var(--muted);
+
+    margin-bottom: 1.2rem;
+
+    font-size: 1.05rem;
+
+    line-height: 1.85;
+
+    max-width: 680px;
+  }
+
+  .about-text p span {
+    color: var(--text);
+  }
+
+
+  /* =========================
+     WORK
+  ========================= */
+
+  #work {
+    background: var(--bg);
+  }
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 2rem;
+  }
+
+  .project {
+    padding: 3.5rem 0;
+
+    display: grid;
+
+    grid-template-columns: 70px 1fr auto;
+
+    gap: 2.5rem;
+
+    align-items: start;
+
+    border-bottom: 1px solid var(--border);
+
+    transition:
+      background 0.2s ease,
+      padding 0.2s ease;
+  }
+
+  .project:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .project:hover {
+    background: rgba(255, 255, 255, 0.35);
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    margin: 0 -1rem;
+
+    border-radius: 4px;
+  }
+
+  .project-num {
+    font-family: var(--serif);
+
+    font-size: 0.95rem;
+
+    color: var(--muted);
+
+    font-style: italic;
+
+    padding-top: 0.25rem;
+  }
+
+  .project-tags {
+    display: flex;
+
+    gap: 0.5rem;
+
+    margin-bottom: 0.9rem;
+
+    flex-wrap: wrap;
+  }
+
+  .project-tag {
+    font-size: 0.65rem;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: var(--accent);
+
+    border: 1px solid rgba(49, 92, 114, 0.25);
+
+    padding: 0.25rem 0.6rem;
+
+    border-radius: 3px;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+
+    font-size: 2.25rem;
+
+    font-weight: 400;
+
+    margin-bottom: 0.7rem;
+
+    line-height: 1.15;
+
+    letter-spacing: -0.015em;
+  }
+
+  .project-desc {
+    color: var(--muted);
+
+    font-size: 1rem;
+
+    line-height: 1.75;
+
+    max-width: 600px;
+
+    margin-bottom: 1.5rem;
+  }
+
+  .project-btns {
+    display: flex;
+
+    gap: 0.65rem;
+
+    flex-wrap: wrap;
+  }
+
+  .project-year {
+    font-size: 0.75rem;
+
+    color: var(--muted);
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    padding-top: 0.25rem;
+
+    letter-spacing: 0.04em;
+  }
+
+
+  /* =========================
+     CONTACT
+  ========================= */
+
+  #contact {
+    background: var(--bg2);
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+  }
+
+  .contact-title {
+    font-family: var(--serif);
+
+    font-size: clamp(3rem, 6vw, 5.5rem);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    margin-bottom: 1.5rem;
+
+    max-width: 700px;
+
+    letter-spacing: -0.03em;
+  }
+
+  .contact-title em {
+    font-style: italic;
+
+    color: var(--accent);
+  }
+
+  .contact-sub {
+    color: var(--muted);
+
+    font-size: 1rem;
+
+    margin-bottom: 2.5rem;
+
+    max-width: 420px;
+
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+
+    gap: 0.8rem;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  footer {
+    background: var(--bg);
+
+    border-top: 1px solid var(--border);
+
+    padding: 2rem 8rem;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+
+    font-size: 1rem;
+
+    color: var(--muted);
+  }
+
+  .footer-note {
+    font-size: 0.72rem;
+
+    color: var(--muted);
+
+    letter-spacing: 0.04em;
+  }
+
+
+  /* =========================
+     ANIMATIONS
+  ========================= */
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scrollLine {
+    0% {
+      left: -100%;
+    }
+
+    50% {
+      left: 0%;
+    }
+
+    100% {
+      left: 100%;
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+
+  /* =========================
+     MOBILE
+  ========================= */
+
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    #home, section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .project { grid-template-columns: 1fr; }
-    .project-num, .project-year { display: none; }
-    .hero-scroll { left: 1.5rem; }
-    .hero-title { font-size: 3rem; }
+
+    nav {
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-logo {
+      font-size: 1.45rem;
+    }
+
+    .nav-links {
+      gap: 1.2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.68rem;
+    }
+
+    #home,
+    section,
+    footer {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    #home {
+      padding-top: 7rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+    }
+
+    .hero-scroll {
+      left: 1.5rem;
+    }
+
+    .project {
+      grid-template-columns: 1fr;
+
+      gap: 0;
+    }
+
+    .project-num,
+    .project-year {
+      display: none;
+    }
+
+    .project-title {
+      font-size: 2rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+    }
+
+    #contact {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+
+    .contact-title {
+      font-size: 3.2rem;
+    }
+
+    footer {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .nav-links {
+      gap: 0.8rem;
+    }
+
+    .nav-links a {
+      font-size: 0.62rem;
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+    }
+
+    .hero-actions {
+      align-items: flex-start;
+
+      flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      width: fit-content;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+    }
   }
 </style>
 </head>
+
 <body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
   <a href="#home" class="nav-logo">Anthony Mui</a>
+
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="#about">About</a>
+    </li>
+
+    <li>
+      <a href="#work">Work</a>
+    </li>
+
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
   </ul>
 </nav>
 
-<!-- HERO -->
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section id="home">
+
   <div class="hero-bg"></div>
-  <p class="hero-label">Product Manager</p>
-  <h1 class="hero-title">Scope.<br>Build.<br><em>Ship.</em></h1>
-  <p class="hero-sub">I find the problem worth solving, then make sure it gets built.</p>
+
+  <p class="hero-label">
+    Product Manager
+  </p>
+
+  <h1 class="hero-title">
+    Scope.<br>
+    Build.<br>
+    <em>Ship.</em>
+  </h1>
+
+  <p class="hero-sub">
+    I find the problem worth solving, then make sure it gets built.
+  </p>
+
   <div class="hero-actions">
-    <a href="#work" class="btn-primary">See My Work</a>
-    <a href="#contact" class="btn-ghost">Let's Connect</a>
+
+    <a href="#work" class="btn-primary">
+      See My Work
+    </a>
+
+    <a href="#contact" class="btn-ghost">
+      Let's Connect
+    </a>
+
   </div>
-  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+
+  <div class="hero-scroll">
+
+    <div class="scroll-line"></div>
+
+    Scroll
+
+  </div>
+
 </section>
 
-<!-- ABOUT -->
+
+<!-- =========================
+     ABOUT
+========================= -->
+
 <section id="about">
+
   <div class="reveal">
-    <p class="section-label">Background</p>
-    <h2 class="section-title">Built to Ship.</h2>
+
+    <p class="section-label">
+      Background
+    </p>
+
+    <h2 class="section-title">
+      Built to Ship.
+    </h2>
+
   </div>
-  <div class="about-text reveal" style="max-width: 680px;">
-    <p>CS grad from UC Santa Cruz. I turn ideas into real products, designing workflows and crafting user experiences that help ship products people actually use.</p>
+
+  <div
+    class="about-text reveal"
+    style="max-width: 680px;"
+  >
+
+    <p>
+      CS grad from UC Santa Cruz. I turn ideas into real products,
+      designing workflows and crafting user experiences that help
+      ship products people actually use.
+    </p>
+
   </div>
+
 </section>
 
-<!-- WORK -->
+
+<!-- =========================
+     WORK
+========================= -->
+
 <section id="work">
+
   <div class="reveal">
-    <p class="section-label">View Work</p>
-    <h2 class="section-title">Products built, shipped, and analyzed.</h2>
+
+    <p class="section-label">
+      View Work
+    </p>
+
+    <h2 class="section-title">
+      Products built, shipped, and analyzed.
+    </h2>
+
   </div>
+
+
   <div class="projects">
 
+
     <!-- SWIM SHARK -->
+
     <div class="project reveal">
-      <div class="project-num">01</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="project-tag">Founder</span>
-          <span class="project-tag">Marketplace</span>
-          <span class="project-tag">Operations</span>
-        </div>
-        <h3 class="project-title">Swim Shark Academy</h3>
-        <p class="project-desc">Founded a two-sided marketplace connecting swim instructors with students. Identified a real market gap, built the operations from scratch, and generated $8K+ in revenue.</p>
-        <div class="project-btns">
-          <a href="swim-shark.html" class="btn-primary">Case Study →</a>
-        </div>
+
+      <div class="project-num">
+        01
       </div>
-      <div class="project-year">2024</div>
+
+      <div class="project-body">
+
+        <div class="project-tags">
+
+          <span class="project-tag">
+            Founder
+          </span>
+
+          <span class="project-tag">
+            Marketplace
+          </span>
+
+          <span class="project-tag">
+            Operations
+          </span>
+
+        </div>
+
+        <h3 class="project-title">
+          Swim Shark Academy
+        </h3>
+
+        <p class="project-desc">
+          Founded a two-sided marketplace connecting swim instructors
+          with students. Identified a real market gap, built the
+          operations from scratch, and generated $8K+ in revenue.
+        </p>
+
+        <div class="project-btns">
+
+          <a
+            href="swim-shark.html"
+            class="btn-primary"
+          >
+            Case Study →
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="project-year">
+        2024
+      </div>
+
     </div>
+
 
     <!-- DOCFLOW -->
+
     <div class="project reveal">
-      <div class="project-num">02</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="project-tag">0→1 Build</span>
-          <span class="project-tag">Full-Stack</span>
-          <span class="project-tag">Live Product</span>
-        </div>
-        <h3 class="project-title">DocFlow</h3>
-        <p class="project-desc">A full-stack collaborative document editor scoped and shipped. Every decision driven by deliberate tradeoffs, focusing on delivering a polished core.</p>
-        <div class="project-btns">
-          <a href="docflow.html" class="btn-primary">Case Study →</a>
-          <a href="https://docflow-production-e48b.up.railway.app/" class="btn-ghost">Try Demo →</a><!-- TODO: add DocFlow demo link -->
-        </div>
+
+      <div class="project-num">
+        02
       </div>
-      <div class="project-year">2026</div>
+
+      <div class="project-body">
+
+        <div class="project-tags">
+
+          <span class="project-tag">
+            0→1 Build
+          </span>
+
+          <span class="project-tag">
+            Full-Stack
+          </span>
+
+          <span class="project-tag">
+            Live Product
+          </span>
+
+        </div>
+
+        <h3 class="project-title">
+          DocFlow
+        </h3>
+
+        <p class="project-desc">
+          A full-stack collaborative document editor scoped and
+          shipped. Every decision driven by deliberate tradeoffs,
+          focusing on delivering a polished core.
+        </p>
+
+        <div class="project-btns">
+
+          <a
+            href="docflow.html"
+            class="btn-primary"
+          >
+            Case Study →
+          </a>
+
+          <a
+            href="https://docflow-production-e48b.up.railway.app/"
+            class="btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Try Demo →
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="project-year">
+        2026
+      </div>
+
     </div>
+
 
     <!-- CANVAS -->
+
     <div class="project reveal">
-      <div class="project-num">03</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="project-tag">UX Research</span>
-          <span class="project-tag">Teardown</span>
-          <span class="project-tag">Redesign</span>
-        </div>
-        <h3 class="project-title">Canvas Course Navigation Teardown</h3>
-        <p class="project-desc">A structured UX teardown of Canvas’s course navigation used by millions of students, ending with a concrete standardized redesign proposal and an interactive before/after demo.</p>
-        <div class="project-btns">
-          <a href="canvas.html" class="btn-primary">Case Study →</a>
-          <a href="https://canvas-course-home-redesign--anthonymui4.replit.app/" class="btn-ghost">Interactive Demo →</a>
-        </div>
+
+      <div class="project-num">
+        03
       </div>
-      <div class="project-year">2026</div>
+
+      <div class="project-body">
+
+        <div class="project-tags">
+
+          <span class="project-tag">
+            UX Research
+          </span>
+
+          <span class="project-tag">
+            Teardown
+          </span>
+
+          <span class="project-tag">
+            Redesign
+          </span>
+
+        </div>
+
+        <h3 class="project-title">
+          Canvas Course Navigation Teardown
+        </h3>
+
+        <p class="project-desc">
+          A structured UX teardown of Canvas's course navigation
+          used by millions of students, ending with a concrete
+          standardized redesign proposal and an interactive
+          before/after demo.
+        </p>
+
+        <div class="project-btns">
+
+          <a
+            href="canvas.html"
+            class="btn-primary"
+          >
+            Case Study →
+          </a>
+
+          <a
+            href="https://canvas-course-home-redesign--anthonymui4.replit.app/"
+            class="btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Interactive Demo →
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="project-year">
+        2026
+      </div>
+
     </div>
 
+
   </div>
+
 </section>
 
-<!-- CONTACT -->
+
+<!-- =========================
+     CONTACT
+========================= -->
+
 <section id="contact">
+
   <div class="reveal">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="contact-title">Let's <em>Connect.</em></h2>
-    <p class="contact-sub">Reach out via LinkedIn or email.</p>
+
+    <p class="section-label">
+      Get In Touch
+    </p>
+
+    <h2 class="contact-title">
+      Let's <em>Connect.</em>
+    </h2>
+
+    <p class="contact-sub">
+      Reach out via LinkedIn or email.
+    </p>
+
     <div class="contact-links">
-      <a href="https://linkedin.com/in/anthonymui" class="btn-primary" target="_blank">LinkedIn</a>
-      <a href="mailto:antm4072@gmail.com" class="btn-ghost">Email Me</a>
+
+      <a
+        href="https://linkedin.com/in/anthonymui"
+        class="btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <a
+        href="mailto:antm4072@gmail.com"
+        class="btn-ghost"
+      >
+        Email Me
+      </a>
+
     </div>
+
   </div>
+
 </section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
-  <span class="footer-name">Anthony Mui</span>
+
+  <span class="footer-name">
+    Anthony Mui
+  </span>
+
 </footer>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
+
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach((entry, i) => {
+
+        if (entry.isIntersecting) {
+
+          setTimeout(
+            () => entry.target.classList.add('visible'),
+            i * 80
+          );
+
+          observer.unobserve(entry.target);
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.1
+    }
+  );
+
+
+  reveals.forEach(
+    (el) => observer.observe(el)
+  );
+
+
   const nav = document.querySelector('nav');
+
+
   window.addEventListener('scroll', () => {
-    const isMobile = window.innerWidth <= 768;
-    const sidePad = isMobile ? '1.5rem' : '4rem';
-    nav.style.padding = window.scrollY > 50 ? `0.9rem ${sidePad}` : `1.25rem ${sidePad}`;
+
+    const isMobile =
+      window.innerWidth <= 768;
+
+    const sidePad =
+      isMobile ? '1.5rem' : '4rem';
+
+
+    nav.style.padding =
+      window.scrollY > 50
+        ? `0.9rem ${sidePad}`
+        : `1.25rem ${sidePad}`;
+
   });
+
 </script>
+
 </body>
 </html>
